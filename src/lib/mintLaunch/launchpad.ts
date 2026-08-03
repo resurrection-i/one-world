@@ -30,7 +30,7 @@ const DEFAULT_APP_BACKEND_URL = "same-origin";
 const configuredBackendUrl =
   String(import.meta.env.VITE_MINT_BACKEND_URL ?? "").trim() || DEFAULT_APP_BACKEND_URL;
 
-export const DEFAULT_MINT_FACTORY_ADDRESS = "0x66a6EdF9383c64C87a91FC8C98189CCA5A764DBf";
+export const DEFAULT_MINT_FACTORY_ADDRESS = "0x9c1156f1092b34579bbc2eb3b048aedf1e88577f";
 const RETIRED_MINT_FACTORY_ADDRESSES = new Set([
   "0x084c85f7cf1d9cf3d638ef75b1561e464884dfbc",
 ]);
