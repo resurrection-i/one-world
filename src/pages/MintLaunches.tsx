@@ -110,12 +110,12 @@ export default function MintLaunches() {
             <button
               onClick={() => setRefreshKey((k) => k + 1)}
               disabled={status === "loading"}
-              className="kimi-btn-secondary"
+              className="world-btn-secondary"
             >
               <RefreshCw className={cn("h-4 w-4", status === "loading" && "animate-spin")} />
               刷新
             </button>
-            <button onClick={() => navigate("/mint-launch")} className="kimi-btn-primary">
+            <button onClick={() => navigate("/mint-launch")} className="world-btn-primary">
               去发射
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -127,7 +127,7 @@ export default function MintLaunches() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6B7280]" />
           <input
-            className="kimi-input pl-9"
+            className="world-input pl-9"
             placeholder="搜索代币名称、符号或合约地址"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -136,7 +136,7 @@ export default function MintLaunches() {
       </div>
 
       {status === "loading" && (
-        <div className="kimi-empty">
+        <div className="world-empty">
           <Loader2 className="h-8 w-8 animate-spin text-[#FFD700]" />
           <p className="text-sm text-[#9CA3AF]">正在加载链上发射列表…</p>
         </div>
@@ -149,8 +149,8 @@ export default function MintLaunches() {
       )}
 
       {status === "ready" && filtered.length === 0 && (
-        <div className="kimi-empty">
-          <div className="kimi-empty-icon">
+        <div className="world-empty">
+          <div className="world-empty-icon">
             <Rocket className="h-7 w-7" />
           </div>
           <p className="text-base font-medium text-white">

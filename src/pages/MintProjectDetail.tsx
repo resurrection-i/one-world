@@ -151,7 +151,7 @@ export default function MintProjectDetail() {
 
   if (status === "loading") {
     return (
-      <div className="page-fade-in kimi-empty">
+      <div className="page-fade-in world-empty">
         <Loader2 className="h-8 w-8 animate-spin text-[#FFD700]" />
         <p className="text-sm text-[#9CA3AF]">正在加载项目详情…</p>
       </div>
@@ -161,7 +161,7 @@ export default function MintProjectDetail() {
   if (status === "error" || !project) {
     return (
       <div className="page-fade-in mx-auto max-w-3xl px-4 py-8">
-        <button onClick={() => navigate(-1)} className="kimi-btn-secondary mb-4">
+        <button onClick={() => navigate(-1)} className="world-btn-secondary mb-4">
           <ArrowLeft className="h-4 w-4" />
           返回
         </button>
@@ -177,14 +177,14 @@ export default function MintProjectDetail() {
   return (
     <div className="page-fade-in mx-auto max-w-3xl px-4 py-6 lg:py-8">
       <div className="mb-6 flex items-center justify-between">
-        <button onClick={() => navigate(-1)} className="kimi-btn-secondary">
+        <button onClick={() => navigate(-1)} className="world-btn-secondary">
           <ArrowLeft className="h-4 w-4" />
           返回
         </button>
         <button
           onClick={() => setRefreshKey((k) => k + 1)}
           disabled={refreshing}
-          className="kimi-btn-secondary"
+          className="world-btn-secondary"
         >
           <RefreshCw className={cn("h-4 w-4", refreshing && "animate-spin")} />
           刷新
@@ -289,7 +289,7 @@ export default function MintProjectDetail() {
             href={`https://pancakeswap.finance/swap?outputCurrency=${project.token}`}
             target="_blank"
             rel="noreferrer"
-            className="kimi-btn-primary mt-4 flex w-full items-center justify-center gap-2"
+            className="world-btn-primary mt-4 flex w-full items-center justify-center gap-2"
           >
             <ArrowUpDown className="h-4 w-4" />
             去 PancakeSwap 交易
@@ -309,13 +309,13 @@ export default function MintProjectDetail() {
               min={1}
               value={mintQuantity}
               onChange={(e) => setMintQuantity(e.target.value)}
-              className="kimi-input"
+              className="world-input"
               placeholder="Mint 数量"
             />
             <button
               onClick={handleMint}
               disabled={minting || !wallet.signer}
-              className="kimi-btn-primary whitespace-nowrap"
+              className="world-btn-primary whitespace-nowrap"
             >
               {minting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Mint"}
               {Number(mintCost) > 0 && ` · ${mintCost} ${project.paymentSymbol}`}
@@ -340,7 +340,7 @@ export default function MintProjectDetail() {
               onClick={handleToggleWhitelist}
               disabled={whitelistModeLoading}
               className={cn(
-                "kimi-btn-secondary text-xs",
+                "world-btn-secondary text-xs",
                 project.whitelistEnabled ? "text-[#FF6B6B]" : "text-[#FFD700]",
               )}
             >
@@ -361,14 +361,14 @@ export default function MintProjectDetail() {
             value={whitelistInput}
             onChange={(e) => setWhitelistInput(e.target.value)}
             placeholder="批量粘贴白名单地址，每行一个，支持空格、逗号分隔"
-            className="kimi-input mt-4 min-h-[120px] resize-y"
+            className="world-input mt-4 min-h-[120px] resize-y"
           />
           <p className="mt-2 text-xs text-[#6B7280]">单次最多 200 个地址</p>
 
           <button
             onClick={handleSaveWhitelist}
             disabled={whitelistLoading || !whitelistInput.trim()}
-            className="kimi-btn-primary mt-4 w-full"
+            className="world-btn-primary mt-4 w-full"
           >
             {whitelistLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
             保存白名单

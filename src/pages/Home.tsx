@@ -15,7 +15,7 @@ const highlights = [
   {
     icon: Coins,
     title: "链上资产",
-    description: "游戏内资产通过 KimiMint 发射台铸造，真正属于你。",
+    description: "游戏内资产通过发射台铸造，真正属于你。",
   },
 ];
 
@@ -89,7 +89,7 @@ export default function Home() {
           {highlights.map((item) => (
             <div
               key={item.title}
-              className="kimi-card group text-left transition-all duration-200 hover:-translate-y-1 hover:border-[#00E5FF]/30 hover:bg-[#1A1D21] hover:shadow-[0_0_20px_rgba(0,229,255,0.08)]"
+              className="world-card group text-left transition-all duration-200 hover:-translate-y-1 hover:border-[#00E5FF]/30 hover:bg-[#1A1D21] hover:shadow-[0_0_20px_rgba(0,229,255,0.08)]"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#0A0B0D] transition-colors group-hover:bg-[#25282C]">
                 <item.icon className="h-5 w-5 text-[#FFD700]" />
@@ -114,7 +114,7 @@ export default function Home() {
           </div>
           <button
             onClick={() => navigate("/mint")}
-            className="kimi-btn-primary shrink-0"
+            className="world-btn-primary shrink-0"
           >
             <Rocket className="h-4 w-4" />
             开始 Mint 发射

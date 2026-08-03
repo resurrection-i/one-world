@@ -243,7 +243,7 @@ export default function MemeLaunch() {
                   value={form.name}
                   onChange={(e) => updateForm("name", e.target.value)}
                   placeholder="例如：World Coin"
-                  className="kimi-input"
+                  className="world-input"
                 />
               </div>
               <div className="space-y-1.5">
@@ -253,7 +253,7 @@ export default function MemeLaunch() {
                   value={form.symbol}
                   onChange={(e) => updateForm("symbol", e.target.value)}
                   placeholder="例如：WORLD"
-                  className="kimi-input"
+                  className="world-input"
                 />
               </div>
               <div className="space-y-1.5">
@@ -263,7 +263,7 @@ export default function MemeLaunch() {
                   value={form.totalSupply}
                   onChange={(e) => updateForm("totalSupply", e.target.value)}
                   placeholder="1000000000"
-                  className="kimi-input"
+                  className="world-input"
                 />
               </div>
               <div className="space-y-1.5 sm:col-span-2">
@@ -273,7 +273,7 @@ export default function MemeLaunch() {
                   value={form.rewardToken}
                   onChange={(e) => updateForm("rewardToken", e.target.value)}
                   placeholder={BSC_USDT_ADDRESS}
-                  className="kimi-input font-mono text-xs"
+                  className="world-input font-mono text-xs"
                 />
               </div>
             </div>
@@ -299,7 +299,7 @@ export default function MemeLaunch() {
                         step={0.01}
                         value={form[key]}
                         onChange={(e) => updateForm(key, e.target.value)}
-                        className="kimi-input"
+                        className="world-input"
                       />
                     </div>
                   ))}
@@ -326,7 +326,7 @@ export default function MemeLaunch() {
                         step={0.01}
                         value={form[key]}
                         onChange={(e) => updateForm(key, e.target.value)}
-                        className="kimi-input"
+                        className="world-input"
                       />
                     </div>
                   ))}
@@ -363,7 +363,7 @@ export default function MemeLaunch() {
                     value={form.ordinaryWhitelist}
                     onChange={(e) => updateForm("ordinaryWhitelist", e.target.value)}
                     rows={3}
-                    className="kimi-input resize-none"
+                    className="world-input resize-none"
                   />
                 </div>
                 <div className="flex items-center gap-3">
@@ -386,7 +386,7 @@ export default function MemeLaunch() {
                         value={form.limitAccounts}
                         onChange={(e) => updateForm("limitAccounts", e.target.value)}
                         rows={3}
-                        className="kimi-input resize-none"
+                        className="world-input resize-none"
                       />
                     </div>
                     <div className="space-y-1.5">
@@ -395,7 +395,7 @@ export default function MemeLaunch() {
                         value={form.limitQuotas}
                         onChange={(e) => updateForm("limitQuotas", e.target.value)}
                         rows={3}
-                        className="kimi-input resize-none"
+                        className="world-input resize-none"
                       />
                     </div>
                   </div>

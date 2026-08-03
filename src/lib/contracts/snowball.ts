@@ -356,18 +356,18 @@ export function formatCreateFee(feeValue: bigint | string): CreateFeeDisplay {
 async function verifySnowballLaunchpad(provider: ethers.Provider): Promise<string> {
   const network = await provider.getNetwork();
   if (Number(network.chainId) !== BSC_CHAIN_ID) {
-    throw new Error("KIMI 发币工厂仅部署在 BNB Smart Chain（Chain ID 56）");
+    throw new Error("发射工厂仅部署在 BNB Smart Chain（Chain ID 56）");
   }
   const code = await provider.getCode(SNOWBALL_LAUNCHPAD_ADDRESS);
-  if (code === "0x") throw new Error("当前网络没有部署 KIMI 发币工厂");
+  if (code === "0x") throw new Error("当前网络没有部署发射工厂");
   const runtimeHash = ethers.keccak256(code);
   if (runtimeHash.toLowerCase() !== SNOWBALL_LAUNCHPAD_RUNTIME_HASH.toLowerCase()) {
-    throw new Error("KIMI 发币工厂运行时代码与已核验源码不一致，已阻止交易");
+    throw new Error("发射工厂运行时代码与已核验源码不一致，已阻止交易");
   }
   return runtimeHash;
 }
 
-/** 读取并校验 Snowball Factory 的主网实时状态，不使用源码默认值冒充链上值。 */
+/** 读取并校验发射工厂的主网实时状态，不使用源码默认值冒充链上值。 */
 export async function fetchSnowballLaunchpadStatus(
   provider: ethers.Provider = new ethers.JsonRpcProvider(BSC_RPC_URL, BSC_CHAIN_ID, { staticNetwork: true })
 ): Promise<SnowballLaunchpadStatus> {

@@ -220,7 +220,7 @@ export async function deployViaFactory(params: {
   constructorValue?: bigint;
 }): Promise<DeploymentResult> {
   if (!IS_DEPLOY_FACTORY_CONFIGURED) {
-    throw new Error("通用 deploy(bytes,bytes) 工厂未配置；KIMI 发币请在页面选择 KIMI 工厂模式");
+    throw new Error("通用 deploy(bytes,bytes) 工厂未配置，请使用发射台模式");
   }
   const provider = params.signer.provider;
   if (!provider) throw new Error("钱包 Provider 不可用");
@@ -271,30 +271,30 @@ export async function getKimiBalance(signer: ethers.Signer, account?: string): P
   const provider = signer.provider;
   if (!provider) throw new Error("钱包 Provider 不可用");
   const code = await provider.getCode(KIMI_TOKEN_ADDRESS);
-  if (code === "0x") throw new Error("当前网络没有部署 KIMI 代币，请切换到 BNB Smart Chain");
+  if (code === "0x") throw new Error("当前网络没有部署费用代币，请切换到 BNB Smart Chain");
   const contract = new ethers.Contract(KIMI_TOKEN_ADDRESS, KIMI_ABI, signer);
   return (await contract.balanceOf(owner)) as bigint;
 }
 
 export async function chargeKimiTokens(params: { signer: ethers.Signer; amount?: bigint }) {
   const amount = params.amount ?? DEPLOY_BURN_AMOUNT;
-  if (amount <= 0n) throw new Error("KIMI 扣费数量必须大于 0");
+  if (amount <= 0n) throw new Error("费用代币数量必须大于 0");
   const provider = params.signer.provider;
   if (!provider) throw new Error("钱包 Provider 不可用");
   const network = await provider.getNetwork();
   if (Number(network.chainId) !== BSC_CHAIN_ID) {
-    throw new Error("官方 KIMI 仅在 BNB Smart Chain 上扣费，请先切换到 BSC");
+    throw new Error("费用代币仅在 BNB Smart Chain 上使用，请先切换到 BSC");
   }
   const balance = await getKimiBalance(params.signer);
   if (balance < amount) {
-    throw new Error(`官方 KIMI 余额不足，需要至少 20,000 KIMI（${KIMI_TOKEN_ADDRESS}）`);
+    throw new Error(`费用代币余额不足，请检查地址 ${KIMI_TOKEN_ADDRESS}`);
   }
   const contract = new ethers.Contract(KIMI_TOKEN_ADDRESS, KIMI_ABI, params.signer);
   const canTransfer = (await contract.transfer.staticCall(KIMI_BURN_ADDRESS, amount)) as boolean;
-  if (!canTransfer) throw new Error("官方 KIMI 合约拒绝扣费转账");
+  if (!canTransfer) throw new Error("费用代币合约拒绝转账");
   await contract.transfer.estimateGas(KIMI_BURN_ADDRESS, amount);
   const tx = await contract.transfer(KIMI_BURN_ADDRESS, amount);
   const receipt = await tx.wait();
-  if (!receipt || receipt.status !== 1) throw new Error("KIMI 扣费交易未成功确认");
+  if (!receipt || receipt.status !== 1) throw new Error("费用代币交易未成功确认");
   return { txHash: tx.hash, receipt };
 }
