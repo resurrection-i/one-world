@@ -58,7 +58,7 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-[#25282C] bg-[#0A0B0D]/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 w-full border-b border-[#E2E8F0] bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-[1600px] items-center justify-between px-4 lg:px-6">
           {/* Logo */}
           <NavLink to="/" className="flex items-center gap-3 shrink-0">
@@ -68,8 +68,8 @@ export function Header() {
               className="h-9 w-9 rounded-xl object-cover ring-1 ring-[#FFD700]/30"
             />
             <div className="hidden sm:block">
-              <h1 className="text-sm font-bold leading-tight text-white">一个世界</h1>
-              <p className="text-[10px] font-medium tracking-wide text-[#6B7280]">ONE WORLD</p>
+              <h1 className="text-sm font-bold leading-tight text-[#0F172A]">一个世界</h1>
+              <p className="text-[10px] font-medium tracking-wide text-[#94A3B8]">ONE WORLD</p>
             </div>
           </NavLink>
 
@@ -83,8 +83,8 @@ export function Header() {
                   cn(
                     "relative flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "text-[#FFD700]"
-                      : "text-[#9CA3AF] hover:bg-[#1A1D21] hover:text-white"
+                      ? "text-[#B8860B]"
+                      : "text-[#64748B] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
                   )
                 }
               >
@@ -103,10 +103,10 @@ export function Header() {
 
           {/* Right side status & wallet */}
           <div className="flex items-center gap-3 lg:gap-4">
-            <div className="hidden md:flex items-center gap-3 text-xs text-[#6B7280]">
+            <div className="hidden md:flex items-center gap-3 text-xs text-[#94A3B8]">
               <span>v1.0</span>
-              <span className="flex items-center gap-1.5 rounded-full border border-[#25282C] bg-[#111215] px-2.5 py-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
+              <span className="flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-[#F8FAFC] px-2.5 py-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#00B4D8] animate-pulse" />
                 ONLINE
               </span>
             </div>
@@ -129,7 +129,7 @@ export function Header() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen((v) => !v)}
-                  className="flex items-center gap-2 rounded-xl border border-[#25282C] bg-[#111215] px-3 py-2 text-sm text-white transition-all hover:border-[#FFD700]/30 hover:bg-[#1A1D21]"
+                  className="flex items-center gap-2 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-3 py-2 text-sm text-[#0F172A] transition-all hover:border-[#FFD700]/30 hover:bg-[#F1F5F9]"
                 >
                   <span
                     className={cn(
@@ -143,19 +143,19 @@ export function Header() {
                   <span className="sm:hidden">
                     {wallet.account?.slice(0, 4)}...{wallet.account?.slice(-2)}
                   </span>
-                  <ChevronDown className={cn("h-3.5 w-3.5 text-[#9CA3AF] transition-transform", dropdownOpen && "rotate-180")} />
+                  <ChevronDown className={cn("h-3.5 w-3.5 text-[#64748B] transition-transform", dropdownOpen && "rotate-180")} />
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-60 rounded-xl border border-[#25282C] bg-[#111215] p-3 shadow-xl">
-                    <div className="mb-3 space-y-2 border-b border-[#25282C] pb-3 text-xs">
+                  <div className="absolute right-0 top-full mt-2 w-60 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-3 shadow-xl">
+                    <div className="mb-3 space-y-2 border-b border-[#E2E8F0] pb-3 text-xs">
                       <div className="flex items-center justify-between">
-                        <span className="text-[#6B7280]">地址</span>
-                        <span className="font-mono text-white">{wallet.account?.slice(0, 10)}...{wallet.account?.slice(-8)}</span>
+                        <span className="text-[#94A3B8]">地址</span>
+                        <span className="font-mono text-[#0F172A]">{wallet.account?.slice(0, 10)}...{wallet.account?.slice(-8)}</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-[#6B7280]">网络</span>
-                        <span className={wallet.isBSC ? "text-[#FFD700]" : "text-[#FF6B6B]"}>
+                        <span className="text-[#94A3B8]">网络</span>
+                        <span className={wallet.isBSC ? "text-[#B8860B]" : "text-[#FF6B6B]"}>
                           {displayNetwork || "未知网络"}
                         </span>
                       </div>
@@ -165,7 +165,7 @@ export function Header() {
                         wallet.disconnectWallet();
                         setDropdownOpen(false);
                       }}
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#25282C] bg-[#0A0B0D] py-2 text-xs text-[#9CA3AF] transition-colors hover:border-[#FFD700]/30 hover:text-white"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#E2E8F0] bg-white py-2 text-xs text-[#64748B] transition-colors hover:border-[#FFD700]/30 hover:text-[#0F172A]"
                     >
                       <LogOut className="h-3.5 w-3.5" />
                       断开连接
@@ -178,7 +178,7 @@ export function Header() {
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileOpen(true)}
-              className="md:hidden rounded-xl p-2 text-[#9CA3AF] transition-colors hover:bg-[#1A1D21] hover:text-white"
+              className="md:hidden rounded-xl p-2 text-[#64748B] transition-colors hover:bg-[#F1F5F9] hover:text-[#0F172A]"
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -189,9 +189,9 @@ export function Header() {
       {/* Mobile overlay nav */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute right-0 top-0 flex h-full w-80 flex-col border-l border-[#25282C] bg-[#111215]">
-            <div className="flex items-center justify-between border-b border-[#25282C] px-5 py-4">
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <aside className="absolute right-0 top-0 flex h-full w-80 flex-col border-l border-[#E2E8F0] bg-[#F8FAFC]">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] px-5 py-4">
               <div className="flex items-center gap-3">
                 <img
                   src="/one-world-logo.jpg"
@@ -199,11 +199,11 @@ export function Header() {
                   className="h-8 w-8 rounded-xl object-cover ring-1 ring-[#FFD700]/30"
                 />
                 <div>
-                  <h1 className="text-sm font-bold text-white">一个世界</h1>
-                  <p className="text-[10px] text-[#6B7280]">ONE WORLD</p>
+                  <h1 className="text-sm font-bold text-[#0F172A]">一个世界</h1>
+                  <p className="text-[10px] text-[#94A3B8]">ONE WORLD</p>
                 </div>
               </div>
-              <button onClick={() => setMobileOpen(false)} className="text-[#9CA3AF] hover:text-white">
+              <button onClick={() => setMobileOpen(false)} className="text-[#64748B] hover:text-[#0F172A]">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -218,8 +218,8 @@ export function Header() {
                         cn(
                           "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
                           isActive
-                            ? "bg-[#FFD700]/10 text-[#FFD700]"
-                            : "text-[#9CA3AF] hover:bg-[#1A1D21] hover:text-white"
+                              ? "bg-[#FFD700]/10 text-[#B8860B]"
+                              : "text-[#64748B] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
                         )
                       }
                     >
@@ -230,11 +230,11 @@ export function Header() {
                 ))}
               </ul>
             </nav>
-            <div className="border-t border-[#25282C] p-4">
-              <div className="flex items-center justify-between text-xs text-[#6B7280]">
+            <div className="border-t border-[#E2E8F0] p-4">
+              <div className="flex items-center justify-between text-xs text-[#94A3B8]">
                 <span>v1.0</span>
                 <span className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#00E5FF]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#00B4D8]" />
                   ONLINE
                 </span>
               </div>

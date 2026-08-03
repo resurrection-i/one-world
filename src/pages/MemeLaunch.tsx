@@ -186,23 +186,23 @@ export default function MemeLaunch() {
     <div className="page-fade-in flex min-h-[calc(100vh-8rem)] flex-col gap-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 className="text-xl font-black text-white sm:text-2xl">Meme 一键发射</h2>
-          <p className="mt-1 text-sm text-[#9CA3AF]">
+          <h2 className="text-xl font-black text-[#0F172A] sm:text-2xl">Meme 一键发射</h2>
+          <p className="mt-1 text-sm text-[#64748B]">
             使用已核验的发射工厂合约，在 BNB Smart Chain 快速发行 Meme 代币
           </p>
         </div>
         <div className="flex items-center gap-2">
           {wallet.isConnected ? (
-            <div className="flex items-center gap-2 rounded-xl border border-[#25282C] bg-[#111215] px-3 py-2 text-xs text-white">
+            <div className="flex items-center gap-2 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] px-3 py-2 text-xs text-[#0F172A]">
               <span className="h-2 w-2 rounded-full bg-[#FFD700]" />
               <span>
                 {wallet.account?.slice(0, 6)}...{wallet.account?.slice(-4)}
               </span>
-              <span className="text-[#6B7280]">{Number(wallet.balance).toFixed(4)} BNB</span>
+              <span className="text-[#94A3B8]">{Number(wallet.balance).toFixed(4)} BNB</span>
               {!wallet.isBSC && (
                 <button
                   onClick={wallet.switchToBSC}
-                  className="ml-1 rounded bg-[#FFD700]/10 px-1.5 py-0.5 text-[10px] text-[#FFD700] hover:bg-[#FFD700]/20"
+                  className="ml-1 rounded bg-[#FFD700]/10 px-1.5 py-0.5 text-[10px] text-[#B8860B] hover:bg-[#FFD700]/20"
                 >
                   切换 BSC
                 </button>
@@ -230,14 +230,14 @@ export default function MemeLaunch() {
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_360px]">
         <div className="flex flex-col gap-5">
           {/* Basic info */}
-          <section className="rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5">
-            <h3 className="mb-4 flex items-center gap-2 text-sm font-bold text-white">
-              <Sparkles className="h-4 w-4 text-[#FFD700]" />
+          <section className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-5">
+            <h3 className="mb-4 flex items-center gap-2 text-sm font-bold text-[#0F172A]">
+              <Sparkles className="h-4 w-4 text-[#B8860B]" />
               基础信息
             </h3>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-[#9CA3AF]">代币名称</label>
+                <label className="text-xs font-medium text-[#64748B]">代币名称</label>
                 <input
                   type="text"
                   value={form.name}
@@ -247,7 +247,7 @@ export default function MemeLaunch() {
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-[#9CA3AF]">代币符号</label>
+                <label className="text-xs font-medium text-[#64748B]">代币符号</label>
                 <input
                   type="text"
                   value={form.symbol}
@@ -257,7 +257,7 @@ export default function MemeLaunch() {
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-xs font-medium text-[#9CA3AF]">发行总量</label>
+                <label className="text-xs font-medium text-[#64748B]">发行总量</label>
                 <input
                   type="text"
                   value={form.totalSupply}
@@ -267,7 +267,7 @@ export default function MemeLaunch() {
                 />
               </div>
               <div className="space-y-1.5 sm:col-span-2">
-                <label className="text-xs font-medium text-[#9CA3AF]">分红代币地址</label>
+                <label className="text-xs font-medium text-[#64748B]">分红代币地址</label>
                 <input
                   type="text"
                   value={form.rewardToken}
@@ -280,18 +280,18 @@ export default function MemeLaunch() {
           </section>
 
           {/* Tax config */}
-          <section className="rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5">
-            <h3 className="mb-4 flex items-center gap-2 text-sm font-bold text-white">
-              <Settings2 className="h-4 w-4 text-[#00E5FF]" />
+          <section className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-5">
+            <h3 className="mb-4 flex items-center gap-2 text-sm font-bold text-[#0F172A]">
+              <Settings2 className="h-4 w-4 text-[#00B4D8]" />
               税率配置（%）
             </h3>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div>
-                <p className="mb-3 text-xs font-medium text-[#9CA3AF]">买入税率</p>
+                <p className="mb-3 text-xs font-medium text-[#64748B]">买入税率</p>
                 <div className="grid grid-cols-2 gap-3">
                   {BUY_TAX_FIELDS.map(({ key, label }) => (
                     <div key={key} className="space-y-1.5">
-                      <label className="text-xs text-[#6B7280]">{label}</label>
+                      <label className="text-xs text-[#94A3B8]">{label}</label>
                       <input
                         type="number"
                         min={0}
@@ -307,18 +307,18 @@ export default function MemeLaunch() {
                 <p
                   className={cn(
                     "mt-2 text-xs",
-                    isBuyTaxValid ? "text-[#6B7280]" : "text-[#FF6B6B]"
+                    isBuyTaxValid ? "text-[#94A3B8]" : "text-[#FF6B6B]"
                   )}
                 >
                   买入总税率：{totalBuyTax.toFixed(2)}% {totalBuyTax > 25 && "（超过 25%）"}
                 </p>
               </div>
               <div>
-                <p className="mb-3 text-xs font-medium text-[#9CA3AF]">卖出税率</p>
+                <p className="mb-3 text-xs font-medium text-[#64748B]">卖出税率</p>
                 <div className="grid grid-cols-2 gap-3">
                   {SELL_TAX_FIELDS.map(({ key, label }) => (
                     <div key={key} className="space-y-1.5">
-                      <label className="text-xs text-[#6B7280]">{label}</label>
+                      <label className="text-xs text-[#94A3B8]">{label}</label>
                       <input
                         type="number"
                         min={0}
@@ -334,7 +334,7 @@ export default function MemeLaunch() {
                 <p
                   className={cn(
                     "mt-2 text-xs",
-                    totalSellTax <= 25 ? "text-[#6B7280]" : "text-[#FF6B6B]"
+                    totalSellTax <= 25 ? "text-[#94A3B8]" : "text-[#FF6B6B]"
                   )}
                 >
                   卖出总税率：{totalSellTax.toFixed(2)}% {totalSellTax > 25 && "（超过 25%）"}
@@ -344,13 +344,13 @@ export default function MemeLaunch() {
           </section>
 
           {/* Advanced */}
-          <section className="rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5">
+          <section className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-5">
             <button
               onClick={() => setAdvancedOpen((v) => !v)}
-              className="flex w-full items-center justify-between text-sm font-bold text-white"
+              className="flex w-full items-center justify-between text-sm font-bold text-[#0F172A]"
             >
               <span className="flex items-center gap-2">
-                <Settings2 className="h-4 w-4 text-[#9CA3AF]" />
+                <Settings2 className="h-4 w-4 text-[#64748B]" />
                 高级选项
               </span>
               <ChevronDown className={cn("h-4 w-4 transition-transform", advancedOpen && "rotate-180")} />
@@ -358,7 +358,7 @@ export default function MemeLaunch() {
             {advancedOpen && (
               <div className="mt-4 space-y-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-medium text-[#9CA3AF]">普通白名单地址（每行一个或逗号分隔）</label>
+                  <label className="text-xs font-medium text-[#64748B]">普通白名单地址（每行一个或逗号分隔）</label>
                   <textarea
                     value={form.ordinaryWhitelist}
                     onChange={(e) => updateForm("ordinaryWhitelist", e.target.value)}
@@ -372,16 +372,16 @@ export default function MemeLaunch() {
                     type="checkbox"
                     checked={form.limitModeEnabled}
                     onChange={(e) => updateForm("limitModeEnabled", e.target.checked)}
-                    className="h-4 w-4 rounded border-[#25282C] bg-[#0A0B0D] text-[#FFD700] focus:ring-[#FFD700]"
+                    className="h-4 w-4 rounded border-[#E2E8F0] bg-[#F8FAFC] text-[#B8860B] focus:ring-[#FFD700]"
                   />
-                  <label htmlFor="limitMode" className="text-sm text-white">
+                  <label htmlFor="limitMode" className="text-sm text-[#0F172A]">
                     启用限制模式
                   </label>
                 </div>
                 {form.limitModeEnabled && (
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div className="space-y-1.5">
-                      <label className="text-xs font-medium text-[#9CA3AF]">限制账户地址</label>
+                      <label className="text-xs font-medium text-[#64748B]">限制账户地址</label>
                       <textarea
                         value={form.limitAccounts}
                         onChange={(e) => updateForm("limitAccounts", e.target.value)}
@@ -390,7 +390,7 @@ export default function MemeLaunch() {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-xs font-medium text-[#9CA3AF]">对应额度</label>
+                      <label className="text-xs font-medium text-[#64748B]">对应额度</label>
                       <textarea
                         value={form.limitQuotas}
                         onChange={(e) => updateForm("limitQuotas", e.target.value)}
@@ -407,16 +407,16 @@ export default function MemeLaunch() {
 
         {/* Right: preview + action */}
         <div className="flex flex-col gap-5">
-          <section className="rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5">
-            <h3 className="mb-4 text-sm font-bold text-white">发射预览</h3>
+          <section className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-5">
+            <h3 className="mb-4 text-sm font-bold text-[#0F172A]">发射预览</h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-center justify-between">
-                <span className="text-[#9CA3AF]">工厂地址</span>
+                <span className="text-[#64748B]">工厂地址</span>
                 <a
                   href={`https://bscscan.com/address/${launchpadStatus?.address ?? ""}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-mono text-xs text-[#00E5FF] hover:underline"
+                  className="font-mono text-xs text-[#00B4D8] hover:underline"
                 >
                   {launchpadStatus?.address
                     ? `${launchpadStatus.address.slice(0, 6)}...${launchpadStatus.address.slice(-4)}`
@@ -424,8 +424,8 @@ export default function MemeLaunch() {
                 </a>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#9CA3AF]">当前创建费</span>
-                <span className="font-medium text-white">
+                <span className="text-[#64748B]">当前创建费</span>
+                <span className="font-medium text-[#0F172A]">
                   {feeReadState === "loading" ? (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
                   ) : feeReadState === "error" ? (
@@ -436,14 +436,14 @@ export default function MemeLaunch() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#9CA3AF]">买入总税率</span>
-                <span className={cn("font-medium", isBuyTaxValid ? "text-white" : "text-[#FF6B6B]")}>
+                <span className="text-[#64748B]">买入总税率</span>
+                <span className={cn("font-medium", isBuyTaxValid ? "text-[#0F172A]" : "text-[#FF6B6B]")}>
                   {totalBuyTax.toFixed(2)}%
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#9CA3AF]">卖出总税率</span>
-                <span className={cn("font-medium", totalSellTax <= 25 ? "text-white" : "text-[#FF6B6B]")}>
+                <span className="text-[#64748B]">卖出总税率</span>
+                <span className={cn("font-medium", totalSellTax <= 25 ? "text-[#0F172A]" : "text-[#FF6B6B]")}>
                   {totalSellTax.toFixed(2)}%
                 </span>
               </div>
@@ -481,23 +481,23 @@ export default function MemeLaunch() {
           </section>
 
           {txStatus === "success" && tokenAddress && (
-            <section className="rounded-2xl border border-[#00E5FF]/30 bg-[#00E5FF]/10 p-5">
-              <div className="mb-3 flex items-center gap-2 text-[#00E5FF]">
+            <section className="rounded-2xl border border-[#00B4D8]/30 bg-[#00B4D8]/10 p-5">
+              <div className="mb-3 flex items-center gap-2 text-[#00B4D8]">
                 <CheckCircle className="h-5 w-5" />
                 <span className="font-bold">发射成功</span>
               </div>
               <div className="space-y-3">
                 <div className="space-y-1">
-                  <p className="text-xs text-[#9CA3AF]">代币地址</p>
+                  <p className="text-xs text-[#64748B]">代币地址</p>
                   <div className="flex items-center gap-2">
-                    <code className="flex-1 rounded-lg bg-[#0A0B0D] px-3 py-2 text-xs text-white break-all">
+                    <code className="flex-1 rounded-lg bg-[#F8FAFC] px-3 py-2 text-xs text-[#0F172A] break-all">
                       {tokenAddress}
                     </code>
                     <button
                       onClick={copyTokenAddress}
-                      className="rounded-lg bg-[#0A0B0D] p-2 text-[#9CA3AF] hover:text-white"
+                      className="rounded-lg bg-[#F8FAFC] p-2 text-[#64748B] hover:text-[#0F172A]"
                     >
-                      {copied ? <CheckCircle className="h-4 w-4 text-[#00E5FF]" /> : <Copy className="h-4 w-4" />}
+                      {copied ? <CheckCircle className="h-4 w-4 text-[#00B4D8]" /> : <Copy className="h-4 w-4" />}
                     </button>
                   </div>
                 </div>
@@ -505,7 +505,7 @@ export default function MemeLaunch() {
                   href={`https://bscscan.com/tx/${txHash}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 text-xs text-[#00E5FF] hover:underline"
+                  className="flex items-center gap-2 text-xs text-[#00B4D8] hover:underline"
                 >
                   <ExternalLink className="h-3.5 w-3.5" />
                   查看交易

@@ -12,8 +12,8 @@ const Game = lazy(() => import("@/pages/Game"));
 
 function PageLoading() {
   return (
-    <div className="flex min-h-[50vh] items-center justify-center text-sm text-[#9CA3AF]">
-      <Loader2 className="mr-2 h-4 w-4 animate-spin text-[#D0FF00]" />
+    <div className="flex min-h-[50vh] items-center justify-center text-sm text-[#64748B]">
+      <Loader2 className="mr-2 h-4 w-4 animate-spin text-[#B8860B]" />
       页面加载中…
     </div>
   );

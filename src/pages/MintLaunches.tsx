@@ -35,7 +35,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="ml-1 inline-flex items-center rounded p-0.5 text-[#6B7280] transition-colors hover:bg-[#25282C] hover:text-[#FFD700]"
+      className="ml-1 inline-flex items-center rounded p-0.5 text-[#94A3B8] transition-colors hover:bg-[#E2E8F0] hover:text-[#B8860B]"
       title="复制地址"
     >
       {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
@@ -95,14 +95,14 @@ export default function MintLaunches() {
 
   return (
     <div className="page-fade-in mx-auto max-w-7xl px-4 py-6 lg:py-8">
-      <section className="rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 lg:p-6">
+      <section className="rounded-2xl border border-[#E2E8F0] bg-white/80 p-5 lg:p-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <Rocket className="h-5 w-5 text-[#FFD700]" />
-              <h1 className="text-2xl font-black tracking-tight text-white">一个世界 Mint 已发射</h1>
+              <Rocket className="h-5 w-5 text-[#B8860B]" />
+              <h1 className="text-2xl font-black tracking-tight text-[#0F172A]">一个世界 Mint 已发射</h1>
             </div>
-            <p className="mt-1 text-sm text-[#9CA3AF]">
+            <p className="mt-1 text-sm text-[#64748B]">
               展示通过 一个世界 Mint 发射台部署到 BNB Smart Chain 的代币与金库。
             </p>
           </div>
@@ -125,7 +125,7 @@ export default function MintLaunches() {
 
       <div className="mt-6 flex items-center gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6B7280]" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#94A3B8]" />
           <input
             className="world-input pl-9"
             placeholder="搜索代币名称、符号或合约地址"
@@ -137,8 +137,8 @@ export default function MintLaunches() {
 
       {status === "loading" && (
         <div className="world-empty">
-          <Loader2 className="h-8 w-8 animate-spin text-[#FFD700]" />
-          <p className="text-sm text-[#9CA3AF]">正在加载链上发射列表…</p>
+          <Loader2 className="h-8 w-8 animate-spin text-[#B8860B]" />
+          <p className="text-sm text-[#64748B]">正在加载链上发射列表…</p>
         </div>
       )}
 
@@ -153,10 +153,10 @@ export default function MintLaunches() {
           <div className="world-empty-icon">
             <Rocket className="h-7 w-7" />
           </div>
-          <p className="text-base font-medium text-white">
+          <p className="text-base font-medium text-[#0F172A]">
             {query ? "没有匹配的发射项目" : "暂无发射项目"}
           </p>
-          <p className="text-sm text-[#9CA3AF]">
+          <p className="text-sm text-[#64748B]">
             {query ? "尝试更换搜索关键词" : "去发射台创建第一个 一个世界 Mint 项目吧"}
           </p>
         </div>
@@ -167,25 +167,25 @@ export default function MintLaunches() {
           {filtered.map((project) => (
             <div
               key={project.token}
-              className="group relative overflow-hidden rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 transition-all hover:border-[#FFD700]/30 hover:shadow-[0_0_24px_rgba(208,255,0,0.08)]"
+              className="group relative overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white/80 p-5 transition-all hover:border-[#FFD700]/30 hover:shadow-[0_0_24px_rgba(208,255,0,0.08)]"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/5 via-transparent to-[#2EDEDB]/5 opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/5 via-transparent to-[#00B4D8]/5 opacity-0 transition-opacity group-hover:opacity-100" />
               <div className="relative">
                 <div className="flex items-start gap-3">
                   {project.avatar ? (
                     <img
                       src={project.avatar}
                       alt={project.name}
-                      className="h-12 w-12 rounded-xl object-cover ring-1 ring-[#25282C]"
+                      className="h-12 w-12 rounded-xl object-cover ring-1 ring-[#E2E8F0]"
                     />
                   ) : (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#FFD700]/20 to-[#2EDEDB]/10 text-lg font-black text-[#FFD700]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#FFD700]/20 to-[#00B4D8]/10 text-lg font-black text-[#B8860B]">
                       {project.symbol.slice(0, 2) || "OW"}
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
-                    <h3 className="truncate text-base font-bold text-white">{project.name}</h3>
-                    <p className="text-xs text-[#9CA3AF]">
+                    <h3 className="truncate text-base font-bold text-[#0F172A]">{project.name}</h3>
+                    <p className="text-xs text-[#64748B]">
                       {project.symbol} · {formatTime(project.createdAt)}
                     </p>
                   </div>
@@ -193,23 +193,23 @@ export default function MintLaunches() {
 
                 <div className="mt-4 space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-[#6B7280]">进度</span>
-                    <span className="text-white">{project.progress.toFixed(1)}%</span>
+                    <span className="text-[#94A3B8]">进度</span>
+                    <span className="text-[#0F172A]">{project.progress.toFixed(1)}%</span>
                   </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-[#25282C]">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-[#E2E8F0]">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#FFD700] to-[#2EDEDB]"
+                      className="h-full rounded-full bg-gradient-to-r from-[#FFD700] to-[#00B4D8]"
                       style={{ width: `${Math.min(100, project.progress)}%` }}
                     />
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-[#6B7280]">Minted</span>
-                    <span className="text-white">
+                    <span className="text-[#94A3B8]">Minted</span>
+                    <span className="text-[#0F172A]">
                       {project.mintedCount} / {project.mintCount}
                     </span>
                   </div>
                   {project.whitelistEnabled && (
-                    <div className="flex items-center gap-1.5 text-xs text-[#9CA3AF]">
+                    <div className="flex items-center gap-1.5 text-xs text-[#64748B]">
                       <Users className="h-3 w-3" />
                       白名单 {project.whitelistMintedCount}/{project.whitelistMintCount} · 公开{" "}
                       {project.publicMintedCount}/{project.publicMintCount}
@@ -218,16 +218,16 @@ export default function MintLaunches() {
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
-                  <div className="rounded-lg border border-[#25282C] bg-[#0A0B0D]/80 p-2">
-                    <div className="text-[#6B7280]">代币</div>
-                    <div className="mt-0.5 flex items-center font-mono text-white">
+                  <div className="rounded-lg border border-[#E2E8F0] bg-[#F8FAFC]/80 p-2">
+                    <div className="text-[#94A3B8]">代币</div>
+                    <div className="mt-0.5 flex items-center font-mono text-[#0F172A]">
                       {shortAddress(project.token)}
                       <CopyButton text={project.token} />
                     </div>
                   </div>
-                  <div className="rounded-lg border border-[#25282C] bg-[#0A0B0D]/80 p-2">
-                    <div className="text-[#6B7280]">金库</div>
-                    <div className="mt-0.5 flex items-center font-mono text-white">
+                  <div className="rounded-lg border border-[#E2E8F0] bg-[#F8FAFC]/80 p-2">
+                    <div className="text-[#94A3B8]">金库</div>
+                    <div className="mt-0.5 flex items-center font-mono text-[#0F172A]">
                       {shortAddress(project.vault)}
                       <CopyButton text={project.vault} />
                     </div>
@@ -236,8 +236,8 @@ export default function MintLaunches() {
 
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex items-center gap-1.5 text-xs">
-                    <Clock className="h-3.5 w-3.5 text-[#6B7280]" />
-                    <span className={project.finalized ? "text-[#FF6B6B]" : "text-[#FFD700]"}>
+                    <Clock className="h-3.5 w-3.5 text-[#94A3B8]" />
+                    <span className={project.finalized ? "text-[#FF6B6B]" : "text-[#B8860B]"}>
                       {project.finalized ? "已结束" : "进行中"}
                     </span>
                   </div>
@@ -247,7 +247,7 @@ export default function MintLaunches() {
                         href={`https://pancakeswap.finance/swap?outputCurrency=${project.token}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-xs text-[#00E5FF] hover:underline"
+                        className="inline-flex items-center gap-1 text-xs text-[#00B4D8] hover:underline"
                       >
                         交易
                         <ArrowUpDown className="h-3 w-3" />
@@ -255,7 +255,7 @@ export default function MintLaunches() {
                     )}
                     <Link
                       to={`/mint-project/${project.token}`}
-                      className="inline-flex items-center gap-1 text-xs text-[#FFD700] hover:underline"
+                      className="inline-flex items-center gap-1 text-xs text-[#B8860B] hover:underline"
                     >
                       详情
                       <ArrowRight className="h-3 w-3" />

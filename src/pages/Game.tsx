@@ -185,7 +185,7 @@ export default function Game() {
                     setStarted(false);
                     setIframeError("");
                   }}
-                  className="kimi-btn-primary"
+                  className="world-btn-primary"
                 >
                   返回
                 </button>

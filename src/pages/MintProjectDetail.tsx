@@ -153,7 +153,7 @@ export default function MintProjectDetail() {
     return (
       <div className="page-fade-in world-empty">
         <Loader2 className="h-8 w-8 animate-spin text-[#FFD700]" />
-        <p className="text-sm text-[#9CA3AF]">正在加载项目详情…</p>
+        <p className="text-sm text-[#64748B]">正在加载项目详情…</p>
       </div>
     );
   }
@@ -197,22 +197,22 @@ export default function MintProjectDetail() {
         </div>
       )}
 
-      <section className="rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 lg:p-6">
+      <section className="rounded-2xl border border-[#E2E8F0] bg-white/80 p-5 lg:p-6">
         <div className="flex items-start gap-4">
           {project.avatar ? (
             <img
               src={project.avatar}
               alt={project.name}
-              className="h-16 w-16 rounded-2xl object-cover ring-1 ring-[#25282C]"
+              className="h-16 w-16 rounded-2xl object-cover ring-1 ring-[#E2E8F0]"
             />
           ) : (
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FFD700]/20 to-[#2EDEDB]/10 text-xl font-black text-[#FFD700]">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FFD700]/20 to-[#00B4D8]/10 text-xl font-black text-[#FFD700]">
               {project.symbol.slice(0, 2) || "OW"}
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-black tracking-tight text-white">{project.name}</h1>
-            <p className="text-sm text-[#9CA3AF]">
+            <h1 className="text-2xl font-black tracking-tight text-[#0F172A]">{project.name}</h1>
+            <p className="text-sm text-[#64748B]">
               {project.symbol} · {project.whitelistEnabled ? "白名单模式" : "公开模式"}
             </p>
           </div>
@@ -220,16 +220,16 @@ export default function MintProjectDetail() {
 
         <div className="mt-6 space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-[#6B7280]">铸造进度</span>
-            <span className="text-sm font-bold text-white">{project.progress.toFixed(1)}%</span>
+            <span className="text-sm text-[#94A3B8]">铸造进度</span>
+            <span className="text-sm font-bold text-[#0F172A]">{project.progress.toFixed(1)}%</span>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-[#25282C]">
+          <div className="h-2 overflow-hidden rounded-full bg-[#E2E8F0]">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-[#FFD700] to-[#2EDEDB]"
+              className="h-full rounded-full bg-gradient-to-r from-[#FFD700] to-[#00B4D8]"
               style={{ width: `${Math.min(100, project.progress)}%` }}
             />
           </div>
-          <div className="flex justify-between text-sm text-[#9CA3AF]">
+          <div className="flex justify-between text-sm text-[#64748B]">
             <span>
               {project.mintedCount} / {project.mintCount} 份
             </span>
@@ -238,7 +238,7 @@ export default function MintProjectDetail() {
         </div>
 
         {project.whitelistEnabled && (
-          <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3 text-sm text-[#9CA3AF]">
+          <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-3 text-sm text-[#64748B]">
             <Users className="h-4 w-4 text-[#FFD700]" />
             白名单 {project.whitelistMintedCount}/{project.whitelistMintCount} · 公开{" "}
             {project.publicMintedCount}/{project.publicMintCount}
@@ -246,37 +246,37 @@ export default function MintProjectDetail() {
         )}
 
         <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-          <div className="rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3">
-            <div className="text-[#6B7280]">单次价格</div>
-            <div className="mt-1 text-white">
+          <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-3">
+            <div className="text-[#94A3B8]">单次价格</div>
+            <div className="mt-1 text-[#0F172A]">
               {project.mintPrice} {project.paymentSymbol}
             </div>
           </div>
-          <div className="rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3">
-            <div className="text-[#6B7280]">单钱包上限</div>
-            <div className="mt-1 text-white">
+          <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-3">
+            <div className="text-[#94A3B8]">单钱包上限</div>
+            <div className="mt-1 text-[#0F172A]">
               {project.maxMintPerWallet === "0" ? "不限制" : `${project.maxMintPerWallet} 份`}
             </div>
           </div>
-          <div className="rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3">
-            <div className="text-[#6B7280]">代币合约</div>
+          <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-3">
+            <div className="text-[#94A3B8]">代币合约</div>
             <a
               href={`https://bscscan.com/token/${project.token}`}
               target="_blank"
               rel="noreferrer"
-              className="mt-1 inline-flex items-center gap-1 font-mono text-[#FFD700] hover:underline"
+              className="mt-1 inline-flex items-center gap-1 font-mono text-[#B8860B] hover:underline"
             >
               {shortAddress(project.token)}
               <ExternalLink className="h-3 w-3" />
             </a>
           </div>
-          <div className="rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3">
-            <div className="text-[#6B7280]">金库合约</div>
+          <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-3">
+            <div className="text-[#94A3B8]">金库合约</div>
             <a
               href={`https://bscscan.com/address/${project.vault}`}
               target="_blank"
               rel="noreferrer"
-              className="mt-1 inline-flex items-center gap-1 font-mono text-[#FFD700] hover:underline"
+              className="mt-1 inline-flex items-center gap-1 font-mono text-[#B8860B] hover:underline"
             >
               {shortAddress(project.vault)}
               <ExternalLink className="h-3 w-3" />
@@ -298,10 +298,10 @@ export default function MintProjectDetail() {
       </section>
 
       {!project.finalized && (
-        <section className="mt-6 rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 lg:p-6">
+        <section className="mt-6 rounded-2xl border border-[#E2E8F0] bg-white/80 p-5 lg:p-6">
           <div className="flex items-center gap-2">
             <Rocket className="h-5 w-5 text-[#FFD700]" />
-            <h2 className="text-lg font-bold text-white">参与 Mint</h2>
+            <h2 className="text-lg font-bold text-[#0F172A]">参与 Mint</h2>
           </div>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <input
@@ -322,7 +322,7 @@ export default function MintProjectDetail() {
             </button>
           </div>
           {project.whitelistEnabled && wallet.account && (
-            <p className="mt-3 text-xs text-[#9CA3AF]">
+            <p className="mt-3 text-xs text-[#64748B]">
               白名单剩余份额：{project.whitelistRemaining} 份
             </p>
           )}
@@ -330,11 +330,11 @@ export default function MintProjectDetail() {
       )}
 
       {isCreator && !project.finalized && (
-        <section className="mt-6 rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 lg:p-6">
+        <section className="mt-6 rounded-2xl border border-[#E2E8F0] bg-white/80 p-5 lg:p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5 text-[#FFD700]" />
-              <h2 className="text-lg font-bold text-white">白名单管理</h2>
+              <h2 className="text-lg font-bold text-[#0F172A]">白名单管理</h2>
             </div>
             <button
               onClick={handleToggleWhitelist}
@@ -353,7 +353,7 @@ export default function MintProjectDetail() {
             </button>
           </div>
 
-          <div className="mt-4 rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3 text-xs text-[#9CA3AF]">
+          <div className="mt-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC]/80 p-3 text-xs text-[#64748B]">
             已添加白名单地址数：{project.totalWhitelistAllowance}
           </div>
 
@@ -363,7 +363,7 @@ export default function MintProjectDetail() {
             placeholder="批量粘贴白名单地址，每行一个，支持空格、逗号分隔"
             className="world-input mt-4 min-h-[120px] resize-y"
           />
-          <p className="mt-2 text-xs text-[#6B7280]">单次最多 200 个地址</p>
+          <p className="mt-2 text-xs text-[#94A3B8]">单次最多 200 个地址</p>
 
           <button
             onClick={handleSaveWhitelist}
