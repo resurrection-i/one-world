@@ -30,12 +30,14 @@ const DEFAULT_APP_BACKEND_URL = "same-origin";
 const configuredBackendUrl =
   String(import.meta.env.VITE_MINT_BACKEND_URL ?? "").trim() || DEFAULT_APP_BACKEND_URL;
 
-export const DEFAULT_MINT_FACTORY_ADDRESS = "0xb531eaef5fad1a049c6b1373026b6bd459325dfb";
+export const DEFAULT_MINT_FACTORY_ADDRESS = "0xaa9b9c5f065fa4de891988c47b0432c8a156f3b0";
 const RETIRED_MINT_FACTORY_ADDRESSES = new Set([
   "0x084c85f7cf1d9cf3d638ef75b1561e464884dfbc",
 ]);
 export const DEFAULT_MINT_FEE_RECIPIENT = "0xc5c848Dc65d004Adc1c9DC54BBb3b3bB7084C1E9";
-const DEFAULT_CREATION_FEE_BNB = "0.005";
+const DEFAULT_CREATION_FEE_BNB = "0";
+export const MINT_CREATION_FEE_TOKEN = "0xc2c80d9560c5daf91b5a200091fe0d1889e57777";
+export const MINT_CREATION_FEE_AMOUNT = parseUnits("15000", 18);
 
 function resolveMintFactoryAddress(value: string): string {
   const configured = value.trim();
@@ -52,7 +54,7 @@ export const mintLaunchpadConfig = {
   chainId: Number(import.meta.env.VITE_MINT_CHAIN_ID ?? 56),
   factoryAddress: resolveMintFactoryAddress(String(import.meta.env.VITE_MINT_FACTORY_ADDRESS ?? "")),
   creationFeeToken:
-    String(import.meta.env.VITE_MINT_CREATION_FEE_TOKEN ?? "").trim() || ZeroAddress,
+    String(import.meta.env.VITE_MINT_CREATION_FEE_TOKEN ?? "").trim() || MINT_CREATION_FEE_TOKEN,
   creationFeeAmount: parseEther(
     String(import.meta.env.VITE_MINT_CREATION_FEE_BNB ?? DEFAULT_CREATION_FEE_BNB),
   ),
@@ -61,6 +63,12 @@ export const mintLaunchpadConfig = {
   backendUrl: normalizeBackendBaseUrl(configuredBackendUrl),
   vanitySuffix: configuredVanitySuffix || "7777",
 };
+
+const creationFeeTokenAbi = [
+  "function allowance(address owner,address spender) view returns(uint256)",
+  "function balanceOf(address account) view returns(uint256)",
+  "function approve(address spender,uint256 amount) returns(bool)",
+];
 
 const MAX_ONCHAIN_METADATA_BYTES = 4_096;
 const MAX_METADATA_TEXT_LENGTH = 480;
@@ -252,6 +260,21 @@ export async function createMintLaunchToken(
   const salt = vanity.salt;
 
   const factory = new Contract(mintLaunchpadConfig.factoryAddress, launchFactoryAbi, signer);
+
+  if (mintLaunchpadConfig.creationFeeToken !== ZeroAddress) {
+    const token = new Contract(mintLaunchpadConfig.creationFeeToken, creationFeeTokenAbi, signer);
+    const [balance, allowance] = await Promise.all([
+      token.balanceOf(from) as Promise<bigint>,
+      token.allowance(from, mintLaunchpadConfig.factoryAddress) as Promise<bigint>,
+    ]);
+    if (balance < MINT_CREATION_FEE_AMOUNT) {
+      throw new Error("创建需要先持有至少 15000 枚指定代币。");
+    }
+    if (allowance < MINT_CREATION_FEE_AMOUNT) {
+      const approval = await token.approve(mintLaunchpadConfig.factoryAddress, MINT_CREATION_FEE_AMOUNT);
+      await approval.wait();
+    }
+  }
 
   // Check native BNB balance for creation fee before calling factory
   if (mintLaunchpadConfig.creationFeeAmount > 0n) {

@@ -56,12 +56,12 @@ export const initialAdvancedTax = {
   claimWaitSeconds: "60",
 };
 
-export const mintCreationFeeLabel = "0.005 BNB";
+export const mintCreationFeeLabel = "15000 代币（自动销毁）";
 
 export const mintTemplates: MintLaunchTemplate[] = [
   {
     id: "standard",
-    name: "KimiMint Core",
+    name: "一个世界 Core",
     tag: "Core",
     fee: mintCreationFeeLabel,
     summary: "创建独立 ERC20 和独立 Vault，用户按次数公开 mint，适合快速启动社区资产。",
@@ -70,7 +70,7 @@ export const mintTemplates: MintLaunchTemplate[] = [
   },
   {
     id: "time",
-    name: "KimiMint Time",
+    name: "一个世界 Time",
     tag: "Time",
     fee: mintCreationFeeLabel,
     summary: "为预热、排队和分批开放保留参数入口，方便后续扩展白名单和开盘时间。",
@@ -79,7 +79,7 @@ export const mintTemplates: MintLaunchTemplate[] = [
   },
   {
     id: "buyback",
-    name: "KimiMint Buyback",
+    name: "一个世界 Buyback",
     tag: "Flow",
     fee: mintCreationFeeLabel,
     summary: "税收拆分可映射到基金、回流、奖励和销毁，适合长期运营型项目。",
@@ -88,7 +88,7 @@ export const mintTemplates: MintLaunchTemplate[] = [
   },
   {
     id: "nftReward",
-    name: "KimiMint Reward",
+    name: "一个世界 Reward",
     tag: "Reward",
     fee: mintCreationFeeLabel,
     summary: "记录奖励代币和持仓门槛，便于后续扩展 NFT、任务或会员奖励。",

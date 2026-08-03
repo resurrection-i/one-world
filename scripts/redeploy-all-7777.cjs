@@ -4,12 +4,12 @@ const fs = require("fs");
 const path = require("path");
 const { ethers } = require("ethers");
 
-const KIMI_ADDRESS = "0x9Aa9CADEc931C58c2a22Bbc5381b266d12887777";
+const CREATION_FEE_TOKEN = "0xc2c80d9560c5daf91b5a200091fe0d1889e57777";
 const FEE_RECIPIENT = "0xc5c848Dc65d004Adc1c9DC54BBb3b3bB7084C1E9";
 const PANCAKE_ROUTER = "0x10ED43C718714eb63d5aA57B78B54704E256024E";
 const REQUIRED_TOKEN_SUFFIX = 0x7777;
-const CREATION_FEE_AMOUNT = 0n;
-const CREATION_FEE_NATIVE = ethers.parseEther("0.005");
+const CREATION_FEE_AMOUNT = ethers.parseUnits("15000", 18);
+const CREATION_FEE_NATIVE = 0n;
 // Conservative allowance for four deployments, two binding transactions and
 // verification/configuration follow-ups. Override only after checking gas.
 const MIN_DEPLOY_BALANCE = ethers.parseEther(process.env.MIN_DEPLOY_BALANCE_BNB || "0.08");
@@ -70,7 +70,7 @@ async function main() {
   const factory = await deploy(factoryArtifact.abi, factoryArtifact.bytecode, signer, [
     FEE_RECIPIENT,
     CREATION_FEE_NATIVE,
-    ethers.ZeroAddress,
+    CREATION_FEE_TOKEN,
     CREATION_FEE_AMOUNT,
     PANCAKE_ROUTER,
     tokenDeployerAddr,
@@ -109,9 +109,10 @@ async function main() {
     tokenDeployer: tokenDeployerAddr,
     vaultDeployer: vaultDeployerAddr,
     feeRecipient: FEE_RECIPIENT,
-    creationFee: CREATION_FEE_NATIVE.toString(),
-    creationFeeToken: ethers.ZeroAddress,
-    creationFeeAmount: "0",
+    creationFee: "0",
+    creationFeeToken: CREATION_FEE_TOKEN,
+    creationFeeAmount: CREATION_FEE_AMOUNT.toString(),
+    creationFeeBurnAddress: "0x000000000000000000000000000000000000dEaD",
     liquidityRouter: PANCAKE_ROUTER,
     requiredTokenSuffix: REQUIRED_TOKEN_SUFFIX,
     deployedAt: new Date().toISOString(),

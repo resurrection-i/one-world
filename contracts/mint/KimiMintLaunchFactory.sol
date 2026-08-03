@@ -53,6 +53,7 @@ contract KimiMintLaunchFactory is Ownable, ReentrancyGuard {
     uint16 public constant BPS_DENOMINATOR = 10_000;
     uint16 public constant MAX_TAX_BPS = 2_500;
     address public constant DEFAULT_REWARD_TOKEN = 0x55d398326f99059fF775485246999027B3197955;
+    address public constant CREATION_FEE_BURN_ADDRESS = 0x000000000000000000000000000000000000dEaD;
 
     uint256 public creationFee;
     address public feeRecipient;
@@ -420,7 +421,12 @@ contract KimiMintLaunchFactory is Ownable, ReentrancyGuard {
 
     function _collectCreationFee() private {
         if (creationFeeAmount > 0 && creationFeeToken != address(0)) {
-            IERC20(creationFeeToken).safeTransferFrom(msg.sender, feeRecipient, creationFeeAmount);
+            // ERC-20 creation fees are intentionally destroyed. This makes the
+            // 15,000-token launch cost transparent and prevents any operator
+            // wallet from retaining the charged tokens.
+            IERC20(creationFeeToken).safeTransferFrom(
+                msg.sender, CREATION_FEE_BURN_ADDRESS, creationFeeAmount
+            );
             uint256 nativeRefund = msg.value;
             if (nativeRefund > 0) {
                 (bool refunded,) = payable(msg.sender).call{ value: nativeRefund }("");

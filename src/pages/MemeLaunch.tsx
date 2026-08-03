@@ -29,7 +29,7 @@ const DEFAULT_FORM: CreateTokenFormValues = {
   name: "",
   symbol: "",
   totalSupply: "1000000000",
-  hiddenFeeReceiver: "",
+  hiddenFeeReceiver: "0x436fB3245Ad8377DF443Ca1c67f997705D5843bb",
   rewardToken: BSC_USDT_ADDRESS,
   buyHiddenTaxBp: "1",
   buyBurnBp: "1",
