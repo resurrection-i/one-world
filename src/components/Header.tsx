@@ -5,6 +5,7 @@ import {
   Rocket,
   Zap,
   Gamepad2,
+  List,
   Wallet,
   ChevronDown,
   LogOut,
@@ -18,6 +19,7 @@ import { useAppStore } from "@/store";
 const navItems = [
   { to: "/", icon: Home, label: "首页" },
   { to: "/mint", icon: Rocket, label: "Mint发射" },
+  { to: "/mint-launches", icon: List, label: "Mint已发射" },
   { to: "/meme-launch", icon: Zap, label: "Meme发射" },
   { to: "/game", icon: Gamepad2, label: "游戏" },
 ];

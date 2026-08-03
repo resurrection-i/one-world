@@ -115,7 +115,7 @@ export default function MintLaunches() {
               <RefreshCw className={cn("h-4 w-4", status === "loading" && "animate-spin")} />
               刷新
             </button>
-            <button onClick={() => navigate("/mint-launch")} className="world-btn-primary">
+            <button onClick={() => navigate("/mint")} className="world-btn-primary">
               去发射
               <ArrowRight className="h-4 w-4" />
             </button>
