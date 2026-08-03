@@ -26,7 +26,7 @@ const configuredVanitySuffix = String(import.meta.env.VITE_MINT_VANITY_SUFFIX ??
   .trim()
   .replace(/^0x/i, "")
   .toLowerCase();
-const DEFAULT_APP_BACKEND_URL = "same-origin";
+const DEFAULT_APP_BACKEND_URL = "https://api.kimi-vault.com";
 const configuredBackendUrl =
   String(import.meta.env.VITE_MINT_BACKEND_URL ?? "").trim() || DEFAULT_APP_BACKEND_URL;
 
