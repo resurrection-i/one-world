@@ -7,6 +7,7 @@ const Home = lazy(() => import("@/pages/Home"));
 const MintLaunch = lazy(() => import("@/pages/MintLaunch"));
 const MintLaunches = lazy(() => import("@/pages/MintLaunches"));
 const MintProjectDetail = lazy(() => import("@/pages/MintProjectDetail"));
+const MemeLaunch = lazy(() => import("@/pages/MemeLaunch"));
 const Game = lazy(() => import("@/pages/Game"));
 
 function PageLoading() {
@@ -28,6 +29,7 @@ export default function App() {
             <Route path="/mint" element={<MintLaunch />} />
             <Route path="/mint-project/:token" element={<MintProjectDetail />} />
             <Route path="/mint-launches" element={<MintLaunches />} />
+            <Route path="/meme-launch" element={<MemeLaunch />} />
             <Route path="/game" element={<Game />} />
           </Routes>
         </Suspense>

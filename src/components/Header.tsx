@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import {
   Home,
   Rocket,
+  Zap,
   Gamepad2,
   Wallet,
   ChevronDown,
@@ -17,6 +18,7 @@ import { useAppStore } from "@/store";
 const navItems = [
   { to: "/", icon: Home, label: "首页" },
   { to: "/mint", icon: Rocket, label: "Mint发射" },
+  { to: "/meme-launch", icon: Zap, label: "Meme发射" },
   { to: "/game", icon: Gamepad2, label: "游戏" },
 ];
 
