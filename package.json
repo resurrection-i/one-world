@@ -13,6 +13,7 @@
     "contracts:compile": "node scripts/compile-contracts.mjs",
     "templates:generate": "node scripts/generate-deploy-templates.mjs",
     "templates:check": "node scripts/generate-deploy-templates.mjs --check",
+    "deploy:preflight": "node scripts/preflight-deploy.cjs",
     "secrets:check": "node scripts/check-secrets.mjs",
     "kimimint:verify:project": "node scripts/verify-kimimint-project.cjs",
     "nft:deploy:bsc": "node scripts/deploy-nft-factory-direct.cjs",

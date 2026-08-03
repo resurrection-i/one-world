@@ -10,6 +10,9 @@ const PANCAKE_ROUTER = "0x10ED43C718714eb63d5aA57B78B54704E256024E";
 const REQUIRED_TOKEN_SUFFIX = 0x7777;
 const CREATION_FEE_AMOUNT = ethers.parseUnits("10000", 18);
 const CREATION_FEE_NATIVE = 0n;
+// Conservative allowance for four deployments, two binding transactions and
+// verification/configuration follow-ups. Override only after checking gas.
+const MIN_DEPLOY_BALANCE = ethers.parseEther(process.env.MIN_DEPLOY_BALANCE_BNB || "0.08");
 
 const projectRoot = path.resolve(__dirname, "..");
 
@@ -35,6 +38,16 @@ async function main() {
   console.log("Account:", signer.address);
   const balance = await provider.getBalance(signer.address);
   console.log("Balance:", ethers.formatEther(balance), "BNB");
+  if (balance < MIN_DEPLOY_BALANCE) {
+    throw new Error(
+      `Insufficient deploy balance: ${ethers.formatEther(balance)} BNB; ` +
+      `need at least ${ethers.formatEther(MIN_DEPLOY_BALANCE)} BNB (set MIN_DEPLOY_BALANCE_BNB to override).`,
+    );
+  }
+  const network = await provider.getNetwork();
+  if (network.chainId !== 56n) {
+    throw new Error(`Wrong network: expected BSC chain 56, got ${network.chainId}.`);
+  }
   console.log("");
 
   // 1. TokenDeployer

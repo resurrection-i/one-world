@@ -177,7 +177,7 @@ export default function MemeLaunch() {
     }
   }, [form, wallet.account]);
 
-  const canLaunch = !formValidationMessage && totalBuyTax <= 25 && totalSellTax <= 25;
+  const canLaunch = !formValidationMessage && isBuyTaxValid && isSellTaxValid;
   const displayedCreateFee = preflightFee ?? launchpadStatus?.createFee ?? null;
   const createFeeDisplay = useMemo(
     () => (displayedCreateFee === null ? null : formatCreateFee(displayedCreateFee)),
