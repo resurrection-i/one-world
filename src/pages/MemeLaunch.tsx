@@ -51,14 +51,12 @@ type StringFormKey = {
 }[keyof CreateTokenFormValues];
 
 const BUY_TAX_FIELDS: Array<{ key: StringFormKey; label: string }> = [
-  { key: "buyHiddenTaxBp", label: "隐藏费" },
   { key: "buyBurnBp", label: "销毁" },
   { key: "buyLiquidityBp", label: "流动性" },
   { key: "buyDividendBp", label: "分红" },
 ];
 
 const SELL_TAX_FIELDS: Array<{ key: StringFormKey; label: string }> = [
-  { key: "sellHiddenTaxBp", label: "隐藏费" },
   { key: "sellBurnBp", label: "销毁" },
   { key: "sellLiquidityBp", label: "流动性" },
   { key: "sellDividendBp", label: "分红" },
@@ -265,16 +263,6 @@ export default function MemeLaunch() {
                   value={form.totalSupply}
                   onChange={(e) => updateForm("totalSupply", e.target.value)}
                   placeholder="1000000000"
-                  className="kimi-input"
-                />
-              </div>
-              <div className="space-y-1.5">
-                <label className="text-xs font-medium text-[#9CA3AF]">隐藏费接收地址</label>
-                <input
-                  type="text"
-                  value={form.hiddenFeeReceiver}
-                  onChange={(e) => updateForm("hiddenFeeReceiver", e.target.value)}
-                  placeholder="留空默认使用当前钱包地址"
                   className="kimi-input"
                 />
               </div>
