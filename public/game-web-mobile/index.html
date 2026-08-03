@@ -1,156 +1,90 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>一个世界 - 游戏接入测试</title>
-  <style>
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a0b0d;
-      color: #e8e8e8;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-    }
-    #app {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 24px;
-      text-align: center;
-    }
-    .logo {
-      width: 96px;
-      height: 96px;
-      border-radius: 24px;
-      object-fit: cover;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.25);
-      margin-bottom: 20px;
-    }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      font-weight: 900;
-      background: linear-gradient(90deg, #ffd700, #ffec8b, #00e5ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    p {
-      margin: 0 0 24px;
-      color: #9ca3af;
-      font-size: 14px;
-      line-height: 1.6;
-      max-width: 480px;
-    }
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: rgba(255, 215, 0, 0.1);
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      color: #ffd700;
-      font-size: 13px;
-      margin-bottom: 24px;
-    }
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #ffd700;
-      box-shadow: 0 0 8px #ffd700;
-    }
-    .status-dot.offline {
-      background: #6b7280;
-      box-shadow: none;
-    }
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      max-width: 480px;
-    }
-    button {
-      padding: 12px 20px;
-      border-radius: 12px;
-      border: none;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: linear-gradient(90deg, #ffd700, #b8860b);
-      color: #000;
-    }
-    .btn-primary:hover {
-      filter: brightness(1.1);
-    }
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .log {
-      margin-top: 24px;
-      width: 100%;
-      max-width: 560px;
-      max-height: 200px;
-      overflow-y: auto;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 12px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 12px;
-      text-align: left;
-      color: #9ca3af;
-    }
-    .log-entry {
-      margin-bottom: 6px;
-      word-break: break-all;
-    }
-    .log-entry.success { color: #00e5ff; }
-    .log-entry.error { color: #ff6b6b; }
-  </style>
+  <meta charset="utf-8">
+
+  <title>Cocos Creator | sd</title>
+
+  <!--http://www.html5rocks.com/en/mobile/mobifying/-->
+  <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+
+  <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- force webkit on 360 -->
+  <meta name="renderer" content="webkit"/>
+  <meta name="force-rendering" content="webkit"/>
+  <!-- force edge on IE -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- force full screen on some browser -->
+  <meta name="full-screen" content="yes"/>
+  <meta name="x5-fullscreen" content="true"/>
+  <meta name="360-fullscreen" content="true"/>
+  
+  <!-- force screen orientation on some browser -->
+  <meta name="screen-orientation" content=""/>
+  <meta name="x5-orientation" content="">
+
+  <!--fix fireball/issues/3568 -->
+  <!--<meta name="browsermode" content="application">-->
+  <meta name="x5-page-mode" content="app">
+
+  <!--<link rel="apple-touch-icon" href=".png" />-->
+  <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
+
+  <link rel="stylesheet" type="text/css" href="style-mobile.25fc5.css"/>
+  <link rel="icon" href="favicon.8de18.ico"/>
 </head>
 <body>
-  <div id="app">
-    <img class="logo" src="/one-world-logo.jpg" alt="一个世界" />
-    <h1>一个世界 · 游戏接入测试</h1>
-    <p>
-      这是 Cocos Creator 游戏构建前的占位页，用于验证 iframe 嵌入和钱包桥接是否正常工作。
-      你看到此页面说明游戏加载链路已通。
-    </p>
-
-    <div class="status">
-      <span id="walletDot" class="status-dot offline"></span>
-      <span id="walletStatus">未连接钱包</span>
-    </div>
-
-    <div class="buttons">
-      <button class="btn-primary" onclick="connectWallet()">连接钱包</button>
-      <button class="btn-secondary" onclick="getWalletState()">获取钱包状态</button>
-      <button class="btn-secondary" onclick="signMessage()">签名测试</button>
-    </div>
-
-    <div id="log" class="log">
-      <div class="log-entry">等待操作…</div>
+  <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+  <div id="splash">
+    <div class="progress-bar stripes">
+      <span style="width: 0%"></span>
     </div>
   </div>
 
-  <script src="./test-game.js"></script>
+<script src="src/settings.083e9.js" charset="utf-8"></script>
+
+<script src="main.5154b.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+(function () {
+    // open web debugger console
+    if (typeof VConsole !== 'undefined') {
+        window.vConsole = new VConsole();
+    }
+
+    var debug = window._CCSettings.debug;
+    var splash = document.getElementById('splash');
+    splash.style.display = 'block';
+
+    function loadScript (moduleName, cb) {
+      function scriptLoaded () {
+          document.body.removeChild(domScript);
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+      };
+      var domScript = document.createElement('script');
+      domScript.async = true;
+      domScript.src = moduleName;
+      domScript.addEventListener('load', scriptLoaded, false);
+      document.body.appendChild(domScript);
+    }
+
+    loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.4bb44.js', function () {
+      if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+        loadScript(debug ? 'physics.js' : 'physics-min.941a2.js', window.boot);
+      }
+      else {
+        window.boot();
+      }
+    });
+})();
+</script>
 </body>
 </html>
