@@ -35,7 +35,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="ml-1 inline-flex items-center rounded p-0.5 text-[#6B7280] transition-colors hover:bg-[#25282C] hover:text-[#D0FF00]"
+      className="ml-1 inline-flex items-center rounded p-0.5 text-[#6B7280] transition-colors hover:bg-[#25282C] hover:text-[#FFD700]"
       title="复制地址"
     >
       {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
@@ -99,11 +99,11 @@ export default function MintLaunches() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <Rocket className="h-5 w-5 text-[#D0FF00]" />
-              <h1 className="text-2xl font-black tracking-tight text-white">KimiMint 已发射</h1>
+              <Rocket className="h-5 w-5 text-[#FFD700]" />
+              <h1 className="text-2xl font-black tracking-tight text-white">一个世界 Mint 已发射</h1>
             </div>
             <p className="mt-1 text-sm text-[#9CA3AF]">
-              展示通过 KimiMint 发射台部署到 BNB Smart Chain 的代币与金库。
+              展示通过 一个世界 Mint 发射台部署到 BNB Smart Chain 的代币与金库。
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -137,7 +137,7 @@ export default function MintLaunches() {
 
       {status === "loading" && (
         <div className="kimi-empty">
-          <Loader2 className="h-8 w-8 animate-spin text-[#D0FF00]" />
+          <Loader2 className="h-8 w-8 animate-spin text-[#FFD700]" />
           <p className="text-sm text-[#9CA3AF]">正在加载链上发射列表…</p>
         </div>
       )}
@@ -157,7 +157,7 @@ export default function MintLaunches() {
             {query ? "没有匹配的发射项目" : "暂无发射项目"}
           </p>
           <p className="text-sm text-[#9CA3AF]">
-            {query ? "尝试更换搜索关键词" : "去发射台创建第一个 KimiMint 项目吧"}
+            {query ? "尝试更换搜索关键词" : "去发射台创建第一个 一个世界 Mint 项目吧"}
           </p>
         </div>
       )}
@@ -167,9 +167,9 @@ export default function MintLaunches() {
           {filtered.map((project) => (
             <div
               key={project.token}
-              className="group relative overflow-hidden rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 transition-all hover:border-[#D0FF00]/30 hover:shadow-[0_0_24px_rgba(208,255,0,0.08)]"
+              className="group relative overflow-hidden rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 transition-all hover:border-[#FFD700]/30 hover:shadow-[0_0_24px_rgba(208,255,0,0.08)]"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#D0FF00]/5 via-transparent to-[#2EDEDB]/5 opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/5 via-transparent to-[#2EDEDB]/5 opacity-0 transition-opacity group-hover:opacity-100" />
               <div className="relative">
                 <div className="flex items-start gap-3">
                   {project.avatar ? (
@@ -179,8 +179,8 @@ export default function MintLaunches() {
                       className="h-12 w-12 rounded-xl object-cover ring-1 ring-[#25282C]"
                     />
                   ) : (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#D0FF00]/20 to-[#2EDEDB]/10 text-lg font-black text-[#D0FF00]">
-                      {project.symbol.slice(0, 2) || "KM"}
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#FFD700]/20 to-[#2EDEDB]/10 text-lg font-black text-[#FFD700]">
+                      {project.symbol.slice(0, 2) || "OW"}
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
@@ -198,7 +198,7 @@ export default function MintLaunches() {
                   </div>
                   <div className="h-1.5 overflow-hidden rounded-full bg-[#25282C]">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-[#D0FF00] to-[#2EDEDB]"
+                      className="h-full rounded-full bg-gradient-to-r from-[#FFD700] to-[#2EDEDB]"
                       style={{ width: `${Math.min(100, project.progress)}%` }}
                     />
                   </div>
@@ -237,7 +237,7 @@ export default function MintLaunches() {
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex items-center gap-1.5 text-xs">
                     <Clock className="h-3.5 w-3.5 text-[#6B7280]" />
-                    <span className={project.finalized ? "text-[#FF6B6B]" : "text-[#D0FF00]"}>
+                    <span className={project.finalized ? "text-[#FF6B6B]" : "text-[#FFD700]"}>
                       {project.finalized ? "已结束" : "进行中"}
                     </span>
                   </div>
@@ -255,7 +255,7 @@ export default function MintLaunches() {
                     )}
                     <Link
                       to={`/mint-project/${project.token}`}
-                      className="inline-flex items-center gap-1 text-xs text-[#D0FF00] hover:underline"
+                      className="inline-flex items-center gap-1 text-xs text-[#FFD700] hover:underline"
                     >
                       详情
                       <ArrowRight className="h-3 w-3" />

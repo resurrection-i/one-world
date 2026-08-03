@@ -152,7 +152,7 @@ export default function MintProjectDetail() {
   if (status === "loading") {
     return (
       <div className="page-fade-in kimi-empty">
-        <Loader2 className="h-8 w-8 animate-spin text-[#D0FF00]" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#FFD700]" />
         <p className="text-sm text-[#9CA3AF]">正在加载项目详情…</p>
       </div>
     );
@@ -206,8 +206,8 @@ export default function MintProjectDetail() {
               className="h-16 w-16 rounded-2xl object-cover ring-1 ring-[#25282C]"
             />
           ) : (
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#D0FF00]/20 to-[#2EDEDB]/10 text-xl font-black text-[#D0FF00]">
-              {project.symbol.slice(0, 2) || "KM"}
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FFD700]/20 to-[#2EDEDB]/10 text-xl font-black text-[#FFD700]">
+              {project.symbol.slice(0, 2) || "OW"}
             </div>
           )}
           <div className="min-w-0 flex-1">
@@ -225,7 +225,7 @@ export default function MintProjectDetail() {
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-[#25282C]">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-[#D0FF00] to-[#2EDEDB]"
+              className="h-full rounded-full bg-gradient-to-r from-[#FFD700] to-[#2EDEDB]"
               style={{ width: `${Math.min(100, project.progress)}%` }}
             />
           </div>
@@ -239,7 +239,7 @@ export default function MintProjectDetail() {
 
         {project.whitelistEnabled && (
           <div className="mt-4 flex items-center gap-2 rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3 text-sm text-[#9CA3AF]">
-            <Users className="h-4 w-4 text-[#D0FF00]" />
+            <Users className="h-4 w-4 text-[#FFD700]" />
             白名单 {project.whitelistMintedCount}/{project.whitelistMintCount} · 公开{" "}
             {project.publicMintedCount}/{project.publicMintCount}
           </div>
@@ -264,7 +264,7 @@ export default function MintProjectDetail() {
               href={`https://bscscan.com/token/${project.token}`}
               target="_blank"
               rel="noreferrer"
-              className="mt-1 inline-flex items-center gap-1 font-mono text-[#D0FF00] hover:underline"
+              className="mt-1 inline-flex items-center gap-1 font-mono text-[#FFD700] hover:underline"
             >
               {shortAddress(project.token)}
               <ExternalLink className="h-3 w-3" />
@@ -276,7 +276,7 @@ export default function MintProjectDetail() {
               href={`https://bscscan.com/address/${project.vault}`}
               target="_blank"
               rel="noreferrer"
-              className="mt-1 inline-flex items-center gap-1 font-mono text-[#D0FF00] hover:underline"
+              className="mt-1 inline-flex items-center gap-1 font-mono text-[#FFD700] hover:underline"
             >
               {shortAddress(project.vault)}
               <ExternalLink className="h-3 w-3" />
@@ -300,7 +300,7 @@ export default function MintProjectDetail() {
       {!project.finalized && (
         <section className="mt-6 rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 lg:p-6">
           <div className="flex items-center gap-2">
-            <Rocket className="h-5 w-5 text-[#D0FF00]" />
+            <Rocket className="h-5 w-5 text-[#FFD700]" />
             <h2 className="text-lg font-bold text-white">参与 Mint</h2>
           </div>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
@@ -333,7 +333,7 @@ export default function MintProjectDetail() {
         <section className="mt-6 rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 lg:p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-[#D0FF00]" />
+              <Users className="h-5 w-5 text-[#FFD700]" />
               <h2 className="text-lg font-bold text-white">白名单管理</h2>
             </div>
             <button
@@ -341,7 +341,7 @@ export default function MintProjectDetail() {
               disabled={whitelistModeLoading}
               className={cn(
                 "kimi-btn-secondary text-xs",
-                project.whitelistEnabled ? "text-[#FF6B6B]" : "text-[#D0FF00]",
+                project.whitelistEnabled ? "text-[#FF6B6B]" : "text-[#FFD700]",
               )}
             >
               <Power className="h-3.5 w-3.5" />

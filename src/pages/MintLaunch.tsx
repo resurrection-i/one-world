@@ -57,13 +57,13 @@ const avatarCanvasSize = 256;
 const sectionCard =
   "rounded-2xl border border-[#25282C] bg-[#111215]/80 p-5 lg:p-6 transition-all duration-200 hover:border-[#303236]";
 const sectionCardGlow =
-  "relative overflow-hidden before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-[#D0FF00]/5 before:via-transparent before:to-[#2EDEDB]/5 before:pointer-events-none";
+  "relative overflow-hidden before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-[#FFD700]/5 before:via-transparent before:to-[#2EDEDB]/5 before:pointer-events-none";
 const sectionTitle = "flex items-center gap-2 text-base font-semibold text-white";
 const sectionNumber =
-  "flex h-5 w-5 items-center justify-center rounded-md bg-[#D0FF00]/15 text-[11px] font-bold text-[#D0FF00]";
+  "flex h-5 w-5 items-center justify-center rounded-md bg-[#FFD700]/15 text-[11px] font-bold text-[#FFD700]";
 const labelClass = "mb-1.5 block text-xs font-medium text-[#9CA3AF]";
 const gradientText =
-  "bg-gradient-to-r from-[#D0FF00] via-[#E8FF5C] to-[#2EDEDB] bg-clip-text text-transparent";
+  "bg-gradient-to-r from-[#FFD700] via-[#FFEC8B] to-[#00E5FF] bg-clip-text text-transparent";
 
 function shortAddress(address: string) {
   return address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "";
@@ -276,13 +276,20 @@ export default function MintLaunch() {
   if (result) {
     return (
       <div className="page-fade-in mx-auto max-w-3xl px-4 py-10">
-        <div className={cn(sectionCard, sectionCardGlow, "text-center")}>
-          <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#D0FF00]/20 to-[#2EDEDB]/10 ring-1 ring-[#D0FF00]/20">
-            <Rocket className="h-9 w-9 text-[#D0FF00]" />
+        <div className={cn(sectionCard, sectionCardGlow, "relative text-center")}>
+          <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#00E5FF]/10 blur-3xl" />
+          <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-[#FFD700]/10 blur-3xl" />
+          <div className="relative mx-auto mb-4 flex h-20 w-20 items-center justify-center">
+            <div className="absolute inset-0 rounded-2xl bg-[#FFD700]/20 blur-xl" />
+            <img
+              src="/one-world-logo.jpg"
+              alt="一个世界"
+              className="relative h-20 w-20 rounded-2xl object-cover ring-2 ring-[#FFD700]/30"
+            />
           </div>
-          <h2 className="text-2xl font-bold text-white">KimiMint 发射成功</h2>
+          <h2 className="text-2xl font-bold text-white">一个世界 Mint 发射成功</h2>
           <p className="mt-2 text-sm text-[#9CA3AF]">
-            你的代币和金库已经部署到 BNB Smart Chain
+            你的世界代币和金库已经部署到 BNB Smart Chain
           </p>
           <div className="mt-6 space-y-3 text-left">
             <div className="rounded-xl border border-[#25282C] bg-[#0A0B0D] p-4">
@@ -322,52 +329,57 @@ export default function MintLaunch() {
   return (
     <div className="page-fade-in mx-auto max-w-7xl px-4 py-6 lg:py-8">
       {/* Hero / status strip */}
-      <section className={cn(sectionCard, sectionCardGlow, "mb-6 flex flex-col gap-5 lg:flex-row lg:items-center")}>
-        <div className="flex items-start gap-4 lg:flex-1">
-          <div
-            className={cn(
-              "mt-1.5 h-3 w-3 shrink-0 rounded-full border-2 border-[#111215] shadow-[0_0_8px_currentColor]",
-              wallet.isConnected && wallet.isBSC ? "bg-[#D0FF00] text-[#D0FF00]" : "bg-[#6B7280] text-[#6B7280]",
-            )}
-          />
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <Rocket className="h-5 w-5 text-[#D0FF00]" />
-              <h1 className={cn("text-2xl font-black tracking-tight lg:text-3xl", gradientText)}>
-                KimiMint
-              </h1>
-              <span className="rounded-md bg-[#D0FF00]/10 px-2 py-0.5 text-[10px] font-bold text-[#D0FF00]">
-                LAUNCH
-              </span>
+      <section className={cn(sectionCard, sectionCardGlow, "relative mb-6 overflow-hidden")}>
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#00E5FF]/10 blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#FFD700]/10 blur-3xl" />
+        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center">
+          <div className="flex items-start gap-4 lg:flex-1">
+            <div className="relative">
+              <div className="absolute inset-0 rounded-2xl bg-[#FFD700]/20 blur-xl" />
+              <img
+                src="/one-world-logo.jpg"
+                alt="一个世界"
+                className="relative h-16 w-16 rounded-2xl object-cover ring-2 ring-[#FFD700]/30"
+              />
             </div>
-            <p className="mt-1.5 text-sm text-[#9CA3AF]">
-              在 KimiMint 上创建独立 ERC20 和 Mint 金库，配置铸造、税收、奖励和接收钱包
-            </p>
-            <p className="mt-1 text-xs text-[#6B7280]">
-              {wallet.isConnected
-                ? `${shortAddress(wallet.account || "")} · Factory ${shortAddress(mintLaunchpadConfig.factoryAddress)}`
-                : "连接钱包后会自动填入创建者接收地址"}
-            </p>
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className={cn("text-2xl font-black tracking-tight lg:text-4xl", gradientText)}>
+                  一个世界 Mint
+                </h1>
+                <span className="rounded-md border border-[#FFD700]/30 bg-[#FFD700]/10 px-2 py-0.5 text-[10px] font-bold text-[#FFD700]">
+                  LAUNCH
+                </span>
+              </div>
+              <p className="mt-1.5 text-sm text-[#9CA3AF]">
+                创造你的世界，铸造独立 ERC20 和 Mint 金库。配置铸造、税收、奖励和接收钱包。
+              </p>
+              <p className="mt-1 text-xs text-[#6B7280]">
+                {wallet.isConnected
+                  ? `${shortAddress(wallet.account || "")} · Factory ${shortAddress(mintLaunchpadConfig.factoryAddress)}`
+                  : "连接钱包后会自动填入创建者接收地址"}
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:w-[560px]">
-          {statusItems.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3 text-center transition-colors hover:border-[#D0FF00]/20"
-            >
-              <div className="text-xs text-[#6B7280]">{item.label}</div>
-              <div className="mt-1 text-sm font-bold text-white">{item.value}</div>
-            </div>
-          ))}
-        </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:w-[560px]">
+            {statusItems.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-xl border border-[#25282C] bg-[#0A0B0D]/80 p-3 text-center transition-colors hover:border-[#FFD700]/20"
+              >
+                <div className="text-xs text-[#6B7280]">{item.label}</div>
+                <div className="mt-1 text-sm font-bold text-white">{item.value}</div>
+              </div>
+            ))}
+          </div>
 
-        {wallet.isConnected && !wallet.isBSC && (
-          <button className="kimi-btn-primary shrink-0" onClick={wallet.switchToBSC}>
-            切换网络
-          </button>
-        )}
+          {wallet.isConnected && !wallet.isBSC && (
+            <button className="kimi-btn-primary shrink-0" onClick={wallet.switchToBSC}>
+              切换网络
+            </button>
+          )}
+        </div>
       </section>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
@@ -408,8 +420,8 @@ export default function MintLaunch() {
                 className={cn(
                   "flex cursor-pointer items-center gap-4 rounded-xl border border-dashed p-4 transition-all",
                   avatar
-                    ? "border-[#D0FF00]/40 bg-[#D0FF00]/5"
-                    : "border-[#303236] bg-[#0A0B0D] hover:border-[#D0FF00]/30",
+                    ? "border-[#FFD700]/40 bg-[#FFD700]/5"
+                    : "border-[#303236] bg-[#0A0B0D] hover:border-[#FFD700]/30",
                 )}
               >
                 <input
@@ -476,7 +488,7 @@ export default function MintLaunch() {
             <div className={sectionTitle}>
               <span className={sectionNumber}>02</span>
               选择合约模板
-              <span className="ml-auto rounded-md bg-[#1A1D21] px-2 py-0.5 text-xs text-[#D0FF00]">
+              <span className="ml-auto rounded-md bg-[#1A1D21] px-2 py-0.5 text-xs text-[#FFD700]">
                 {selectedTemplate.tag}
               </span>
             </div>
@@ -489,8 +501,8 @@ export default function MintLaunch() {
                   className={cn(
                     "flex flex-col gap-1 rounded-xl border p-4 text-left transition-all",
                     templateId === template.id
-                      ? "border-[#D0FF00]/50 bg-[#D0FF00]/10"
-                      : "border-[#25282C] bg-[#0A0B0D] hover:border-[#D0FF00]/30",
+                      ? "border-[#FFD700]/50 bg-[#FFD700]/10"
+                      : "border-[#25282C] bg-[#0A0B0D] hover:border-[#FFD700]/30",
                   )}
                 >
                   <span className="text-xs text-[#6B7280]">{template.tag}</span>
@@ -501,7 +513,7 @@ export default function MintLaunch() {
                       {template.checks.map((check) => (
                         <span
                           key={check}
-                          className="flex items-center gap-1 rounded bg-[#D0FF00]/10 px-1.5 py-0.5 text-[10px] text-[#D0FF00]"
+                          className="flex items-center gap-1 rounded bg-[#FFD700]/10 px-1.5 py-0.5 text-[10px] text-[#FFD700]"
                         >
                           <Check className="h-3 w-3" />
                           {check}
@@ -595,7 +607,7 @@ export default function MintLaunch() {
                 }}
               >
                 {whitelistEnabled ? (
-                  <ToggleRight className="h-7 w-7 text-[#D0FF00]" />
+                  <ToggleRight className="h-7 w-7 text-[#FFD700]" />
                 ) : (
                   <ToggleLeft className="h-7 w-7 text-[#6B7280]" />
                 )}
@@ -608,7 +620,7 @@ export default function MintLaunch() {
               </div>
             )}
             {Number(form.maxMintPerWallet || 0) > 0 && (
-              <div className="mt-3 rounded-xl border border-[#D0FF00]/20 bg-[#D0FF00]/5 p-3 text-xs text-[#D0FF00]">
+              <div className="mt-3 rounded-xl border border-[#FFD700]/20 bg-[#FFD700]/5 p-3 text-xs text-[#FFD700]">
                 单钱包最多 {form.maxMintPerWallet} 份；转账即 Mint 也会受这个限制。
               </div>
             )}
@@ -622,7 +634,7 @@ export default function MintLaunch() {
               <span
                 className={cn(
                   "ml-auto text-xs",
-                  allocationTotal <= 100 ? "text-[#D0FF00]" : "text-[#FF6B6B]",
+                  allocationTotal <= 100 ? "text-[#FFD700]" : "text-[#FF6B6B]",
                 )}
               >
                 总计 {allocationTotal}%
@@ -639,7 +651,7 @@ export default function MintLaunch() {
                   step={0.5}
                   value={buyTax}
                   onChange={(e) => setBuyTax(Number(e.target.value))}
-                  className="w-full accent-[#D0FF00]"
+                  className="w-full accent-[#FFD700]"
                 />
               </div>
               <div>
@@ -651,7 +663,7 @@ export default function MintLaunch() {
                   step={0.5}
                   value={sellTax}
                   onChange={(e) => setSellTax(Number(e.target.value))}
-                  className="w-full accent-[#D0FF00]"
+                  className="w-full accent-[#FFD700]"
                 />
               </div>
             </div>
@@ -685,7 +697,7 @@ export default function MintLaunch() {
                       onChange={(e) =>
                         setAdvancedTax((prev) => ({ ...prev, [key]: Number(e.target.value) }))
                       }
-                      className="w-full accent-[#D0FF00]"
+                      className="w-full accent-[#FFD700]"
                     />
                   </div>
                 ))}
@@ -733,7 +745,7 @@ export default function MintLaunch() {
                       step={1}
                       value={allocation[key]}
                       onChange={(e) => updateAllocation(key as AllocationKey, Number(e.target.value))}
-                      className="w-full accent-[#D0FF00]"
+                      className="w-full accent-[#FFD700]"
                     />
                   </div>
                 ))}
@@ -742,7 +754,7 @@ export default function MintLaunch() {
                     "rounded-lg p-2.5 text-xs font-medium",
                     allocationTotal > 100
                       ? "border border-[#FF6B6B]/30 bg-[#FF6B6B]/10 text-[#FF6B6B]"
-                      : "border border-[#D0FF00]/20 bg-[#D0FF00]/5 text-[#D0FF00]",
+                      : "border border-[#FFD700]/20 bg-[#FFD700]/5 text-[#FFD700]",
                   )}
                 >
                   {allocationTotal > 100
@@ -808,9 +820,9 @@ export default function MintLaunch() {
               ].map(({ icon: Icon, label, value, key }) => (
                 <label
                   key={key}
-                  className="flex items-center gap-3 rounded-xl border border-[#25282C] bg-[#0A0B0D] p-3 transition-colors hover:border-[#D0FF00]/20"
+                  className="flex items-center gap-3 rounded-xl border border-[#25282C] bg-[#0A0B0D] p-3 transition-colors hover:border-[#FFD700]/20"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#303236] bg-[#111215] text-[#D0FF00]">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#303236] bg-[#111215] text-[#FFD700]">
                     <Icon className="h-4 w-4" />
                   </span>
                   <span className="w-28 shrink-0 text-sm text-[#9CA3AF]">{label}</span>
@@ -835,7 +847,7 @@ export default function MintLaunch() {
           <button
             type="button"
             className={cn(
-              "group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-[#D0FF00] to-[#B8E600] py-3.5 text-sm font-bold text-black shadow-[0_0_24px_rgba(208,255,0,0.25)] transition-all hover:shadow-[0_0_32px_rgba(208,255,0,0.4)] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:hover:scale-100",
+              "group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-[#FFD700] to-[#B8860B] py-3.5 text-sm font-bold text-black shadow-[0_0_24px_rgba(255,215,0,0.25)] transition-all hover:shadow-[0_0_32px_rgba(255,215,0,0.4)] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:hover:scale-100",
               deploying && "opacity-70",
             )}
             disabled={deploying || !isMintLaunchpadConfigured}
@@ -853,12 +865,12 @@ export default function MintLaunch() {
                 <Rocket className="h-4 w-4" />
               )}
               {deploying
-                ? "KimiMint 部署中..."
+                ? "一个世界 Mint 部署中..."
                 : !wallet.isConnected
                   ? "连接钱包"
                   : !wallet.isBSC
                     ? "切换网络"
-                    : "确认 KimiMint 部署"}
+                    : "确认 一个世界 Mint 部署"}
             </span>
           </button>
         </div>
@@ -874,17 +886,17 @@ export default function MintLaunch() {
                   className="mx-auto h-24 w-24 rounded-2xl object-cover ring-2 ring-[#25282C]"
                 />
               ) : (
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-[#D0FF00]/25 via-[#D0FF00]/10 to-[#2EDEDB]/20 text-3xl font-black text-[#D0FF00] ring-1 ring-[#D0FF00]/20">
-                  {form.symbol.slice(0, 2) || "KM"}
+                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FFD700]/25 via-[#FFD700]/10 to-[#2EDEDB]/20 text-3xl font-black text-[#FFD700] ring-1 ring-[#FFD700]/20">
+                  {form.symbol.slice(0, 2) || "OW"}
                 </div>
               )}
-              <h3 className="mt-4 text-xl font-bold text-white">{form.tokenName || "KimiMint Token"}</h3>
+              <h3 className="mt-4 text-xl font-bold text-white">{form.tokenName || "一个世界 Mint Token"}</h3>
               <p className="text-sm text-[#9CA3AF]">
-                {form.symbol || "KMINT"} · {selectedTemplate.name}
+                {form.symbol || "OWORLD"} · {selectedTemplate.name}
               </p>
-              <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#D0FF00]/10 px-2.5 py-1 text-[10px] font-medium text-[#D0FF00]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#D0FF00]" />
-                KimiMint 发射台
+              <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#FFD700]/10 px-2.5 py-1 text-[10px] font-medium text-[#FFD700]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#FFD700]" />
+                一个世界 Mint 发射台
               </div>
             </div>
 
@@ -908,7 +920,7 @@ export default function MintLaunch() {
                   <span
                     className={cn(
                       item.mono && "font-mono",
-                      item.highlight ? "text-[#D0FF00]" : "text-white",
+                      item.highlight ? "text-[#FFD700]" : "text-white",
                     )}
                   >
                     {item.value}
