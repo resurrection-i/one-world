@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Gamepad2, Loader2, Play, Info, AlertCircle } from "lucide-react";
+import { useWallet } from "@/hooks/useWallet";
 import { cn } from "@/lib/utils";
 
 /**
@@ -22,6 +23,7 @@ const postMessageToGame = (target: HTMLIFrameElement | null, payload: unknown) =
 };
 
 export default function Game() {
+  const wallet = useWallet();
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [srcAvailable, setSrcAvailable] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
@@ -61,6 +63,69 @@ export default function Game() {
         case "WALLET_GET_STATE_RESPONSE":
           // 这些是本页面发给游戏的消息，忽略
           break;
+        case "WALLET_CONNECT": {
+          try {
+            await wallet.connectWallet();
+            postMessageToGame(iframeRef.current, {
+              id,
+              type: "WALLET_CONNECT_RESPONSE",
+              payload: {
+                ok: wallet.isConnected,
+                account: wallet.account,
+                chainId: wallet.chainId,
+                balance: wallet.balance,
+              },
+            });
+          } catch (error) {
+            postMessageToGame(iframeRef.current, {
+              id,
+              type: "WALLET_CONNECT_RESPONSE",
+              payload: { ok: false, error: error instanceof Error ? error.message : "连接失败" },
+            });
+          }
+          break;
+        }
+        case "WALLET_GET_STATE": {
+          postMessageToGame(iframeRef.current, {
+            id,
+            type: "WALLET_GET_STATE_RESPONSE",
+            payload: {
+              ok: true,
+              account: wallet.account,
+              chainId: wallet.chainId,
+              isConnected: wallet.isConnected,
+              isBSC: wallet.isBSC,
+              balance: wallet.balance,
+            },
+          });
+          break;
+        }
+        case "WALLET_SIGN_MESSAGE": {
+          if (!wallet.signer) {
+            postMessageToGame(iframeRef.current, {
+              id,
+              type: "WALLET_SIGN_MESSAGE_RESPONSE",
+              payload: { ok: false, error: "钱包未连接" },
+            });
+            return;
+          }
+          try {
+            const message = String((payload as { message?: string })?.message ?? "");
+            const signature = await wallet.signer.signMessage(message);
+            postMessageToGame(iframeRef.current, {
+              id,
+              type: "WALLET_SIGN_MESSAGE_RESPONSE",
+              payload: { ok: true, signature },
+            });
+          } catch (error) {
+            postMessageToGame(iframeRef.current, {
+              id,
+              type: "WALLET_SIGN_MESSAGE_RESPONSE",
+              payload: { ok: false, error: error instanceof Error ? error.message : "签名失败" },
+            });
+          }
+          break;
+        }
         default:
           // 收到未知消息类型，原样回传便于调试
           postMessageToGame(iframeRef.current, {
@@ -74,7 +139,7 @@ export default function Game() {
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, []);
+  }, [wallet]);
 
   const handleStart = () => {
     setStarted(true);
