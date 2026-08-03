@@ -30,12 +30,12 @@ const DEFAULT_APP_BACKEND_URL = "same-origin";
 const configuredBackendUrl =
   String(import.meta.env.VITE_MINT_BACKEND_URL ?? "").trim() || DEFAULT_APP_BACKEND_URL;
 
-export const DEFAULT_MINT_FACTORY_ADDRESS = "0x9c1156f1092b34579bbc2eb3b048aedf1e88577f";
+export const DEFAULT_MINT_FACTORY_ADDRESS = "0xb531eaef5fad1a049c6b1373026b6bd459325dfb";
 const RETIRED_MINT_FACTORY_ADDRESSES = new Set([
   "0x084c85f7cf1d9cf3d638ef75b1561e464884dfbc",
 ]);
 export const DEFAULT_MINT_FEE_RECIPIENT = "0xc5c848Dc65d004Adc1c9DC54BBb3b3bB7084C1E9";
-const DEFAULT_CREATION_FEE_BNB = "0.005";
+const DEFAULT_CREATION_FEE_BNB = "0.05";
 
 function resolveMintFactoryAddress(value: string): string {
   const configured = value.trim();
