@@ -9,7 +9,7 @@ const FEE_RECIPIENT = "0xc5c848Dc65d004Adc1c9DC54BBb3b3bB7084C1E9";
 const PANCAKE_ROUTER = "0x10ED43C718714eb63d5aA57B78B54704E256024E";
 const REQUIRED_TOKEN_SUFFIX = 0x7777;
 const CREATION_FEE_AMOUNT = 0n;
-const CREATION_FEE_NATIVE = ethers.parseEther("0.05");
+const CREATION_FEE_NATIVE = ethers.parseEther("0.005");
 // Conservative allowance for four deployments, two binding transactions and
 // verification/configuration follow-ups. Override only after checking gas.
 const MIN_DEPLOY_BALANCE = ethers.parseEther(process.env.MIN_DEPLOY_BALANCE_BNB || "0.08");

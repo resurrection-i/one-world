@@ -12,7 +12,7 @@
 - KIMI 创建费代币：`0x9Aa9CADEc931C58c2a22Bbc5381b266d12887777`
 - 平台收款地址：`0xc5c848Dc65d004Adc1c9DC54BBb3b3bB7084C1E9`
 - PancakeSwap V2 Router：`0x10ED43C718714eb63d5aA57B78B54704E256024E`
-- 创建费：0.05 BNB 原生币
+- 创建费：0.005 BNB 原生币
 - KIMI 创建费：关闭（`creationFeeToken = address(0)`、`creationFeeAmount = 0`）
 - BNB 创建费：0
 - 靓号后缀：`0x7777`

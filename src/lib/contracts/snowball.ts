@@ -70,7 +70,7 @@ export interface CreateTokenPreflight {
   gasEstimate: bigint;
 }
 
-export interface SnowballLaunchpadStatus {
+export interface LaunchpadStatus {
   address: string;
   createFee: bigint;
   feeReceiver: string;
@@ -80,6 +80,9 @@ export interface SnowballLaunchpadStatus {
   runtimeHash: string;
   runtimeVerified: boolean;
 }
+
+/** Backward-compatible alias for existing page imports. */
+export type SnowballLaunchpadStatus = LaunchpadStatus;
 
 export interface CreateFeeDisplay {
   amount: string;

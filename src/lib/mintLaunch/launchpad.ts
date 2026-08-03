@@ -35,7 +35,7 @@ const RETIRED_MINT_FACTORY_ADDRESSES = new Set([
   "0x084c85f7cf1d9cf3d638ef75b1561e464884dfbc",
 ]);
 export const DEFAULT_MINT_FEE_RECIPIENT = "0xc5c848Dc65d004Adc1c9DC54BBb3b3bB7084C1E9";
-const DEFAULT_CREATION_FEE_BNB = "0.05";
+const DEFAULT_CREATION_FEE_BNB = "0.005";
 
 function resolveMintFactoryAddress(value: string): string {
   const configured = value.trim();

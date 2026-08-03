@@ -190,7 +190,7 @@ export default function MemeLaunch() {
         <div>
           <h2 className="text-xl font-black text-white sm:text-2xl">Meme 一键发射</h2>
           <p className="mt-1 text-sm text-[#9CA3AF]">
-            使用已核验的 Snowball 工厂合约，在 BNB Smart Chain 快速发行 Meme 代币
+            使用已核验的发射工厂合约，在 BNB Smart Chain 快速发行 Meme 代币
           </p>
         </div>
         <div className="flex items-center gap-2">
